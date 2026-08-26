@@ -48,7 +48,7 @@ jobs:
         with:
           repository: idc/ps4libdoc
           path: orbis-lib-gen/ps4libdoc
-          ref: '5.05'
+          ref: '9.00'
 
       - name: Set environment variables
         run: | 
