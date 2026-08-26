@@ -18,7 +18,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        llvm: [ '10', '11', '12', '13', '14', '15', '16', '17', '18' ]
+        llvm: [ '10', '11', '12', '13', '14', '15', '16', '17', '18', '19', '20', '21' ]
     runs-on: ubuntu-26.04
     steps:
 
@@ -66,8 +66,7 @@ jobs:
           key: llvm-${{ env.llvm_ver }}
 
       - name: Install LLVM and Clang (${{ env.llvm_ver }})
-      # https://github.com/KyleMayes/install-llvm-action/issues/75
-        uses: gentoo-root/install-llvm-action@abb6cec0ec431e834bc5e5090ea39a2d1d63a4c6
+        uses: KyleMayes/install-llvm-action@v2
         with:
           version: ${{ env.llvm_ver }}
           directory: ${{ env.llvm_path }}
