@@ -28,7 +28,7 @@ jobs:
       - name: Checkout musl
         uses: actions/checkout@main
         with:
-          repository: OpenOrbis/musl
+          repository: StevenMiller123/musl-openorbis
           path: musl
 
       - name: Checkout create-fself
