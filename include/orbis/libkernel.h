@@ -152,7 +152,7 @@ int32_t sceKernelGetAppInfo(pid_t pid, OrbisAppInfo* info);
 // Empty Comment
 void sceKernelGetBackupRestoreMode();
 // Empty Comment
-void sceKernelGetCompiledSdkVersion();
+int32_t sceKernelGetCompiledSdkVersion(int32_t*);
 // Empty Comment
 void sceKernelGetCompiledSdkVersionByPid();
 // Empty Comment
