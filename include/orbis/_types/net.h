@@ -30,6 +30,15 @@ typedef struct OrbisNetSockaddr {
 	char sa_data[14];
 } OrbisNetSockaddr;
 
+struct OrbisNetSockaddrIn {
+    uint8_t sin_len;
+    uint8_t sin_family;
+    uint16_t sin_port;
+    uint32_t sin_addr;
+    uint16_t sin_vport;
+    char sin_zero[6];
+};
+
 typedef struct OrbisNetSockaddrUn
 {
 	uint8_t sun_len;
