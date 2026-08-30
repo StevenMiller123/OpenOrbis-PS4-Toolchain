@@ -162,6 +162,20 @@
 #define ORBIS_VIDEO_OUT_ERROR_FATAL                             0x802900FF
 #define ORBIS_VIDEO_OUT_ERROR_ENOMEM                            0x8029100C
 
+// NetCtl library
+#define ORBIS_NET_CTL_ERROR_CALLBACK_MAX                        0x80412103
+#define ORBIS_NET_CTL_ERROR_ID_NOT_FOUND                        0x80412104
+#define ORBIS_NET_CTL_ERROR_INVALID_ID                          0x80412105
+#define ORBIS_NET_CTL_ERROR_INVALID_ADDR                        0x80412107
+#define ORBIS_NET_CTL_ERROR_INVALID_SIZE                        0x80412111
+#define ORBIS_NET_CTL_ERROR_NOT_CONNECTED                       0x80412108
+#define ORBIS_NET_CTL_ERROR_NOT_AVAIL                           0x80412109
+#define ORBIS_NET_CTL_ERROR_NETWORK_DISABLED                    0x8041210D
+#define ORBIS_NET_CTL_ERROR_DISCONNECT_REQ                      0x8041210E
+#define ORBIS_NET_CTL_ERROR_ETHERNET_PLUGOUT                    0x80412115
+#define ORBIS_NET_CTL_ERROR_WIFI_DEAUTHED                       0x80412116
+#define ORBIS_NET_CTL_ERROR_WIFI_BEACON_LOST                    0x80412117
+
 // Pad library
 #define ORBIS_PAD_ERROR_INVALID_ARG                             0x80920001
 #define ORBIS_PAD_ERROR_INVALID_PORT                            0x80920002
