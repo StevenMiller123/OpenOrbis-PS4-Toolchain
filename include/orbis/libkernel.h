@@ -30,7 +30,7 @@ int32_t sceKernelGetThreadName(uint32_t id, char* out);
 // Empty Comment
 int32_t sceKernelGetCpuUsage(struct Proc_Stats* out, int32_t* size);
 // Empty Comment
-int32_t sceKernelGetCpuFrequency();
+uint64_t sceKernelGetCpuFrequency();
 // Empty Comment
 int32_t sceKernelAddFileEvent(OrbisKernelEqueue, int32_t, int32_t, void*);
 // Empty Comment - need to port OrbisKernelTimespec
