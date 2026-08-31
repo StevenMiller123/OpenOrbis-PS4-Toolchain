@@ -172,6 +172,30 @@ jobs:
         working-directory: samples
         run: bash ./build-all.sh
 
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions
+        with:
+          tag_name: release-${{ GITHUB.SHA }}
+          release_name: Automated Release ${{ GITHUB.SHA }}
+          body: |
+            Automated build.
+          draft: false
+          prerelease: false
+
+      - name: Upload Release Asset
+        id: upload-release-asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: toolchain-llvm-${{ env.llvm_ver }}.tar.gz
+          asset_name: openorbis_toolchain.tar.gz
+          asset_content_type: application/gzip
+
       - name: Upload toolchain
         uses: actions/upload-artifact@main
         with:
