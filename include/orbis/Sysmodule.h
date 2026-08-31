@@ -30,23 +30,46 @@ int32_t sceSysmoduleLoadModule(enum OrbisSysModule moduleId);
   */
 int32_t sceSysmoduleUnloadModule(enum OrbisSysModule moduleId);
  
-// Undocumented Function... Need to reverse
-void sceSysmoduleGetModuleHandleInternal();
-// Undocumented Function... Need to reverse
-void sceSysmoduleIsLoadedInternal();
-// Undocumented Function... Need to reverse
+/**
+  * Sysmodule function to retrieve underlying module handles
+  * @param id is the internal module id. see list of module ids.
+  * @return 0 = Success/Valid or Negatives values are error codes.
+  */
+int32_t sceSysmoduleGetModuleHandleInternal(enum OrbisSysModuleInternal moduleId, int32_t* handle);
+
+/**
+  * Sysmodule function to test if an internal module is loaded or not.
+  * @param id is the internal module id. see list of module ids.
+  * @return 0 = Success/Valid or Negatives values are error codes.
+  */
+int32_t sceSysmoduleIsLoadedInternal(enum OrbisSysModuleInternal moduleId);
+
 void sceSysmoduleLoadModuleByNameInternal();
-// Undocumented Function... Need to reverse
-uint32_t sceSysmoduleLoadModuleInternal(enum OrbisSysModuleInternal moduleId);
-// Undocumented Function... Need to reverse
+
+/**
+  * Sysmodule function to load an internal module.
+  * @param id is the internal module id. see list of module ids.
+  * @return 0 = Success/Valid or Negatives values are error codes.
+  */
+int32_t sceSysmoduleLoadModuleInternal(enum OrbisSysModuleInternal moduleId);
+
 void sceSysmoduleLoadModuleInternalWithArg();
-// Undocumented Function... Need to reverse
-void sceSysmodulePreloadModuleForLibkernel();
-// Undocumented Function... Need to reverse
+
+/**
+  * Sysmodule function to load various internal modules before a game runs.
+  * @return 0 = Success/Valid or Negatives values are error codes.
+  */
+int32_t sceSysmodulePreloadModuleForLibkernel();
+
 void sceSysmoduleUnloadModuleByNameInternal();
-// Undocumented Function... Need to reverse
+
+/**
+  * Sysmodule function to unload an internal module.
+  * @param id is the internal module id. see list of module ids.
+  * @return 0 = Success/Valid or Negatives values are error codes.
+  */
 int32_t sceSysmoduleUnloadModuleInternal(enum OrbisSysModuleInternal moduleId);
-// Undocumented Function... Need to reverse
+
 void sceSysmoduleUnloadModuleInternalWithArg();
 
 #ifdef __cplusplus
