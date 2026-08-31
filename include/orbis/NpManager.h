@@ -102,7 +102,7 @@ void sceNpGetUserIdByAccountId();
 // Empty Comment
 void sceNpGetUserIdByOnlineId();
 // Empty Comment
-void sceNpHasSignedUp();
+int32_t sceNpHasSignedUp(int32_t user_id, bool* signed_up);
 // Empty Comment
 void sceNpIdMapperAbortRequest();
 // Empty Comment
@@ -332,7 +332,7 @@ void sceNpSetContentRestriction();
 // Empty Comment
 void sceNpSetGamePresenceOnlineA();
 // Empty Comment
-void sceNpSetNpTitleId();
+int32_t sceNpSetNpTitleId(OrbisNpTitleId* title_id, OrbisNpTitleSecret* title_secret);
 // Empty Comment
 void sceNpSetTimeout();
 // Empty Comment
