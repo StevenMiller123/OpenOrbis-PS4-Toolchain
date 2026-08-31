@@ -9,16 +9,14 @@ on:
     paths-ignore:
       - "**/*.md"
       - '**/*.txt'
-  workflow_dispatch:
-  schedule:
-    - cron: '0 0 1 1-12 *' # rebuild once every month
+
+permissions:
+  contents: write
 
 jobs:
   build:
     strategy:
       fail-fast: false
-      matrix:
-        llvm: [ '21' ]
     runs-on: ubuntu-22.04
     steps:
 
@@ -53,22 +51,21 @@ jobs:
       - name: Set environment variables
         run: | 
           echo "OO_PS4_TOOLCHAIN=$GITHUB_WORKSPACE" >> $GITHUB_ENV
-          echo llvm_ver=${{ matrix.llvm }} >> $GITHUB_ENV
           echo "llvm_path=${{ runner.tool_cache }}/llvm" >> $GITHUB_ENV
           # llvm 13 fix for ci
           sudo apt install libncurses5
 
-      - name: Cache LLVM and Clang (${{ env.llvm_ver }})
+      - name: Cache LLVM and Clang (21)
         id: cache-llvm
         uses: actions/cache@main
         with:
           path: ${{ env.llvm_path }}
-          key: llvm-${{ env.llvm_ver }}
+          key: llvm-21
 
-      - name: Install LLVM and Clang (${{ env.llvm_ver }})
+      - name: Install LLVM and Clang (21)
         uses: KyleMayes/install-llvm-action@v2
         with:
-          version: ${{ env.llvm_ver }}
+          version: 21
           directory: ${{ env.llvm_path }}
           cached: ${{ steps.cache-llvm.outputs.cache-hit }}
 
@@ -166,7 +163,7 @@ jobs:
         run: bash build-and-copy.sh
 
       - name: Create toolchain tarball
-        run: tar -czf toolchain-llvm-${{ env.llvm_ver }}.tar.gz --transform 's,^,OpenOrbis/PS4Toolchain/,' *
+        run: tar -czf toolchain-llvm-21.tar.gz --transform 's,^,OpenOrbis/PS4Toolchain/,' *
 
       - name: Build samples
         working-directory: samples
@@ -192,27 +189,27 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # This token is provided by Actions
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: toolchain-llvm-${{ env.llvm_ver }}.tar.gz
+          asset_path: toolchain-llvm-21.tar.gz
           asset_name: openorbis_toolchain.tar.gz
           asset_content_type: application/gzip
 
       - name: Upload toolchain
         uses: actions/upload-artifact@main
         with:
-          name: toolchain-llvm-${{ env.llvm_ver }}
-          path: toolchain-llvm-${{ env.llvm_ver }}.tar.gz
+          name: toolchain-llvm-21
+          path: toolchain-llvm-21.tar.gz
           if-no-files-found: error
 
       - name: Upload samples packages
         uses: actions/upload-artifact@main
         with:
-          name: samples-pkg-llvm-${{ env.llvm_ver }}
+          name: samples-pkg-llvm-21
           path: samples/**/*.pkg
 
       - name: Upload samples binaries
         uses: actions/upload-artifact@main
         with:
-          name: samples-elf-llvm-${{ env.llvm_ver }}
+          name: samples-elf-llvm-21
           path: |
             samples/**/*.elf
             samples/**/*.so
