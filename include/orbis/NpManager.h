@@ -3,347 +3,199 @@
 
 #include <stdint.h>
 #include <orbis/_types/Np.h>
+
 #ifdef __cplusplus 
 extern "C" {
 #endif
 
-// Empty Comment
 void _sceNpIpcCreateMemoryFromKernel();
-// Empty Comment
 void _sceNpIpcCreateMemoryFromPool();
-// Empty Comment
 void _sceNpIpcDestroyMemory();
-// Empty Comment
 void _sceNpIpcFreeImpl();
-// Empty Comment
 void _sceNpIpcGetNpMemAllocator();
-// Empty Comment
 void _sceNpIpcMallocImpl();
-// Empty Comment
 void _sceNpIpcReallocImpl();
-// Empty Comment
 void _sceNpManagerCreateMemoryFromKernel();
-// Empty Comment
 void _sceNpManagerCreateMemoryFromPool();
-// Empty Comment
 void _sceNpManagerDestroyMemory();
-// Empty Comment
 void _sceNpManagerFreeImpl();
-// Empty Comment
 void _sceNpManagerGetNpMemAllocator();
-// Empty Comment
 void _sceNpManagerMallocImpl();
-// Empty Comment
 void _sceNpManagerReallocImpl();
-// Empty Comment
 void sceNpAbortRequest();
-// Empty Comment
 void sceNpAsmClientGetNpComInfo2();
-// Empty Comment
 void sceNpAsmClientGetNpTitleToken();
-// Empty Comment
 void sceNpAsmClientGetServiceIdInfo();
-// Empty Comment
 void sceNpAsmClientInitialize();
-// Empty Comment
 void sceNpCheckCallback();
-// Empty Comment
 void sceNpCheckCallbackForLib();
-// Empty Comment
 void sceNpCheckNpAvailability();
-
-int32_t sceNpCheckNpAvailabilityA(int32_t, int32_t UserID);
-
-// Empty Comment
+int32_t sceNpCheckNpAvailabilityA(int32_t req_id, int32_t user_id);
 void sceNpCheckNpReachability();
-// Empty Comment
 void sceNpCheckPlus();
-// Empty Comment
 void sceNpCreateAsyncRequest();
-// Empty Comment
 void sceNpCreateRequest();
-// Empty Comment
 void sceNpDeleteRequest();
-// Empty Comment
 void sceNpGetAccountCountry();
-// Empty Comment
 void sceNpGetAccountCountryA();
-// Empty Comment
 void sceNpGetAccountDateOfBirth();
-// Empty Comment
 void sceNpGetAccountDateOfBirthA();
-// Empty Comment
 void sceNpGetAccountId();
-// Empty Comment
 void sceNpGetAccountIdA();
-// Empty Comment
 void sceNpGetAccountLanguage();
-// Empty Comment
 void sceNpGetAccountLanguageA();
-// Empty Comment
 void sceNpGetGamePresenceStatus();
-// Empty Comment
 void sceNpGetGamePresenceStatusA();
-// Empty Comment
 void sceNpGetNpId();
-// Empty Comment
 void sceNpGetNpReachabilityState();
-
-int32_t sceNpGetOnlineId(int32_t UserID, OrbisNpOnlineId* onlineID);
-
-// Empty Comment
+int32_t sceNpGetOnlineId(int32_t user_id, OrbisNpOnlineId* online_id);
 void sceNpGetParentalControlInfo();
-// Empty Comment
 void sceNpGetParentalControlInfoA();
-// Empty Comment
 void sceNpGetState();
-// Empty Comment
 void sceNpGetUserIdByAccountId();
-// Empty Comment
 void sceNpGetUserIdByOnlineId();
-// Empty Comment
 int32_t sceNpHasSignedUp(int32_t user_id, bool* signed_up);
-// Empty Comment
 void sceNpIdMapperAbortRequest();
-// Empty Comment
 void sceNpIdMapperAccountIdToNpId();
-// Empty Comment
 void sceNpIdMapperAccountIdToOnlineId();
-// Empty Comment
 void sceNpIdMapperCreateRequest();
-// Empty Comment
 void sceNpIdMapperDeleteRequest();
-// Empty Comment
 void sceNpIdMapperNpIdToAccountId();
-// Empty Comment
 void sceNpIdMapperOnlineIdToAccountId();
-// Empty Comment
 void sceNpInGameMessageAbortHandle();
-// Empty Comment
 void sceNpInGameMessageCreateHandle();
-// Empty Comment
 void sceNpInGameMessageDeleteHandle();
-// Empty Comment
 void sceNpInGameMessageInitialize();
-// Empty Comment
 void sceNpInGameMessagePrepare();
-// Empty Comment
 void sceNpInGameMessagePrepareA();
-// Empty Comment
 void sceNpInGameMessageSendData();
-// Empty Comment
 void sceNpInGameMessageSendDataA();
-// Empty Comment
 void sceNpInGameMessageTerminate();
-// Empty Comment
 void sceNpIntCheckPlus();
-// Empty Comment
-void sceNpManagerIntAbortRequest();
-// Empty Comment
-void sceNpManagerIntAddPlusMemberTypeCallback();
-// Empty Comment
+int32_t sceNpManagerIntAbortRequest(int32_t req_id);
+int32_t sceNpManagerIntAddPlusMemberTypeCallback(int32_t user_id, OrbisNpManagerPlusMemberTypeCallback cb_func, void* user_arg);
+int32_t sceNpManagerIntBindOfflineAccountId(int32_t user_id, OrbisNpOfflineAccountId* offline_account_id, bool is_adult);
 void sceNpManagerIntCheckGameNpAvailability();
-// Empty Comment
-void sceNpManagerIntClearParentalControlInfoSubAccount();
-// Empty Comment
+int32_t sceNpManagerIntCheckGameNpAvailabilityByPid(int32_t req_id, int32_t pid, int32_t user_id);
+int32_t sceNpManagerIntClearOnlineIdChangeFlag(int32_t user_id);
+int32_t sceNpManagerIntClearParentalControlInfoSubAccount();
 void sceNpManagerIntClearUsedFlag();
-// Empty Comment
-void sceNpManagerIntCreateLoginRequest();
-// Empty Comment
-void sceNpManagerIntCreateRequest();
-// Empty Comment
-void sceNpManagerIntDeleteRequest();
-// Empty Comment
-void sceNpManagerIntGetAccountCountry();
-// Empty Comment
-void sceNpManagerIntGetAccountCountryA();
-// Empty Comment
-void sceNpManagerIntGetAccountDateOfBirth();
-// Empty Comment
-void sceNpManagerIntGetAccountDateOfBirthA();
-// Empty Comment
-void sceNpManagerIntGetAccountId();
-// Empty Comment
-void sceNpManagerIntGetAccountLanguage();
-// Empty Comment
-void sceNpManagerIntGetAccountLanguageA();
-// Empty Comment
-void sceNpManagerIntGetAccountNpEnv();
-// Empty Comment
+int32_t sceNpManagerIntCreateLoginContext(int32_t user_id);
+int32_t sceNpManagerIntCreateLoginRequest(int32_t login_ctx_id);
+int32_t sceNpManagerIntCreateRequest();
+int32_t sceNpManagerIntDeleteLoginContext(int32_t login_ctx_id);
+int32_t sceNpManagerIntDeleteRequest(int32_t req_id);
+int32_t sceNpManagerIntGetAccountCountry(OrbisNpOnlineId* online_id, OrbisNpCountryCode* country_code);
+int32_t sceNpManagerIntGetAccountCountryA(int32_t user_id, OrbisNpCountryCode* country_code);
+int32_t sceNpManagerIntGetAccountDateOfBirth(OrbisNpOnlineId* online_id, OrbisNpDate* date_of_birth);
+int32_t sceNpManagerIntGetAccountDateOfBirthA(int32_t user_id, OrbisNpDate* date_of_birth);
+int32_t sceNpManagerIntGetAccountId(int32_t user_id, uint64_t* account_id);
+int32_t sceNpManagerIntGetAccountLanguage(int32_t req_id, OrbisNpOnlineId* online_id, OrbisNpLanguageCode* lang_code);
+int32_t sceNpManagerIntGetAccountLanguageA(int32_t req_id, int32_t user_id, OrbisNpLanguageCode* lang_code);
+int32_t sceNpManagerIntGetAccountNpEnv(int32_t user_id, OrbisNpManagerNpEnv* np_env);
+int32_t sceNpManagerIntGetAccountType(int32_t user_id, OrbisNpAccountType* account_type);
 void sceNpManagerIntGetActiveSigninState();
-// Empty Comment
-void sceNpManagerIntGetAuthorizationCode();
-// Empty Comment
-void sceNpManagerIntGetAuthorizationCodeA();
-// Empty Comment
+int32_t sceNpManagerIntGetAuthorizationCode(int32_t req_id, OrbisNpOnlineId* online_id, OrbisNpClientId* client_id, char* redirect_uri, char* scope, OrbisNpAuthorizationCode* auth_code);
+int32_t sceNpManagerIntGetAuthorizationCodeA(int32_t req_id, int32_t user_id, OrbisNpClientId* client_id, char* redirect_uri, char* scope, OrbisNpAuthorizationCode* auth_code);
+int32_t sceNpManagerIntGetAuthorizationCodeWithPsnoUri(int32_t req_id, int32_t user_id, char* psno_uri, char* redirect_uri, int32_t size);
 void sceNpManagerIntGetAuthorizationCodeWithRedirectUri();
-// Empty Comment
-void sceNpManagerIntGetAuthServerErrorFlag();
-// Empty Comment
+int32_t sceNpManagerIntGetAuthServerErrorFlag(int32_t user_id, uint32_t* error_flag);
+int32_t sceNpManagerIntGetClientCredentialAccessToken(int32_t req_id, char* scope, OrbisNpAccessToken* access_token);
 void sceNpManagerIntGetGameTitleBanInfo();
-// Empty Comment
 void sceNpManagerIntGetGameTitleToken();
-// Empty Comment
 void sceNpManagerIntGetGameVshToken();
-// Empty Comment
-void sceNpManagerIntGetLastAccountLanguage();
-// Empty Comment
+int32_t sceNpManagerIntGetLastAccountLanguage(int32_t user_id, OrbisNpLanguageCode* lang_code);
 void sceNpManagerIntGetMAccountId();
-// Empty Comment
-void sceNpManagerIntGetNpEnv();
-// Empty Comment
+int32_t sceNpManagerIntGetNpEnv(OrbisNpManagerNpEnv* np_env);
 void sceNpManagerIntGetNpId();
-// Empty Comment
-void sceNpManagerIntGetNpIdSdk();
-// Empty Comment
-void sceNpManagerIntGetOnlineIdInternal();
-// Empty Comment
-void sceNpManagerIntGetOnlineIdSdk();
-// Empty Comment
-void sceNpManagerIntGetParentalControlFlag();
-// Empty Comment
-void sceNpManagerIntGetParentalControlInfo();
-// Empty Comment
-void sceNpManagerIntGetParentalControlInfoA();
-// Empty Comment
+int32_t sceNpManagerIntGetNpIdSdk(int32_t user_id, OrbisNpId* np_id);
+int32_t sceNpManagerIntGetOfflineAccountId(int32_t user_id, OrbisNpOfflineAccountId* offline_account_id, bool* is_adult);
+int32_t sceNpManagerIntGetOnlineIdChangeFlag(int32_t user_id, bool* is_online_id_changed);
+int32_t sceNpManagerIntGetOnlineIdInternal(int32_t user_id, OrbisNpOnlineId* online_id);
+int32_t sceNpManagerIntGetOnlineIdSdk(int32_t user_id, OrbisNpOnlineId* online_id);
+int32_t sceNpManagerIntGetParentalControlFlag(int32_t user_id, OrbisNpParentalControlInfo* info);
+int32_t sceNpManagerIntGetParentalControlInfo(int32_t req_id, OrbisNpOnlineId* online_id, uint8_t* age, OrbisNpParentalControlInfo* info);
+int32_t sceNpManagerIntGetParentalControlInfoA(int32_t req_id, int32_t user_id, uint8_t* age, OrbisNpParentalControlInfo* info);
 void sceNpManagerIntGetParentalControlInfoNB();
-// Empty Comment
-void sceNpManagerIntGetPlusMemberType();
-// Empty Comment
-void sceNpManagerIntGetPlusMemberTypeNB();
-// Empty Comment
-void sceNpManagerIntGetServerError();
-// Empty Comment
-void sceNpManagerIntGetSigninState();
-// Empty Comment
+int32_t sceNpManagerIntGetPlusMemberType(int32_t req_id, int32_t user_id, OrbisNpPlusMemberType* plus_member_type);
+int32_t sceNpManagerIntGetPlusMemberTypeNB(int32_t user_id, OrbisNpPlusMemberType* plus_member_type);
+int32_t sceNpManagerIntGetServerError(int32_t req_id, OrbisNpManagerServerError* server_error);
+int32_t sceNpManagerIntGetSigninState(int32_t user_id, OrbisNpSigninState* state);
 void sceNpManagerIntGetTicket();
-// Empty Comment
 void sceNpManagerIntGetTicketNB();
-// Empty Comment
-void sceNpManagerIntGetUserIdByAccountId();
-// Empty Comment
-void sceNpManagerIntGetUserIdByOnlineId();
-// Empty Comment
+int32_t sceNpManagerIntGetTitleTokenWithCheck(int32_t req_id, int32_t pid, int32_t user_id, OrbisNpTitleId* title_id, OrbisNpTitleToken* title_token);
+int32_t sceNpManagerIntGetUserIdByAccountId(uint64_t account_id, int32_t* user_id);
+int32_t sceNpManagerIntGetUserIdByOfflineAccounId(OrbisNpOfflineAccountId* offline_account_id, int32_t* user_id);
+int32_t sceNpManagerIntGetUserIdByOnlineId(OrbisNpOnlineId* online_id, int32_t* user_id);
 void sceNpManagerIntGetUserList();
-// Empty Comment
 void sceNpManagerIntGetUserNum();
-// Empty Comment
 void sceNpManagerIntGetUserState();
-// Empty Comment
+int32_t sceNpManagerIntGetVshAccessToken(int32_t req_id, int32_t user_id, OrbisNpAccessToken* access_token);
+int32_t sceNpManagerIntGetVshAccessTokenWithCheck(int32_t req_id, int32_t pid, int32_t user_id, OrbisNpAccessToken* access_token);
+int32_t sceNpManagerIntGetVshClientId(OrbisNpClientId* client_id);
 void sceNpManagerIntGetVshToken();
-// Empty Comment
 void sceNpManagerIntGetVshTokenNB();
-// Empty Comment
 void sceNpManagerIntIsServerMaintenanceError();
-// Empty Comment
-void sceNpManagerIntIsSubAccount();
-// Empty Comment
-void sceNpManagerIntIsTemporarySignout();
-// Empty Comment
-void sceNpManagerIntIsUnregisteredClientError();
-// Empty Comment
-void sceNpManagerIntLoginAddJsonInfo();
-// Empty Comment
-void sceNpManagerIntLoginBind();
-// Empty Comment
+int32_t sceNpManagerIntIsSubAccount(int32_t user_id, bool* is_sub_account);
+int32_t sceNpManagerIntIsTemporarySignout(int32_t user_id, bool* temp_signout);
+bool sceNpManagerIntIsUnregisteredClientError(int32_t error_code);
+int32_t sceNpManagerIntLoginAddJsonInfo(int32_t login_ctx_id, char* sso_cookie, char* json_user_info);
+int32_t sceNpManagerIntLoginAuthenticate(int32_t login_req_id, char* request_json);
+int32_t sceNpManagerIntLoginBind(int32_t login_ctx_id, int32_t user_id, bool is_email_verified);
 void sceNpManagerIntLoginCheckSignin();
-// Empty Comment
-void sceNpManagerIntLoginGet2svInfo();
-// Empty Comment
-void sceNpManagerIntLoginGetAccessToken();
-// Empty Comment
-void sceNpManagerIntLoginGetAccountId();
-// Empty Comment
-void sceNpManagerIntLoginGetAuthorizationCode();
-// Empty Comment
-void sceNpManagerIntLoginGetDeviceCodeInfo();
-// Empty Comment
-void sceNpManagerIntLoginGetEmail();
-// Empty Comment
-void sceNpManagerIntLoginGetOnlineId();
-// Empty Comment
-void sceNpManagerIntLoginGetUserId();
-// Empty Comment
-void sceNpManagerIntLoginParseJsonUserInfo();
-// Empty Comment
-void sceNpManagerIntLoginResetSsoToken();
-// Empty Comment
-void sceNpManagerIntLoginSetAccountInfo();
-// Empty Comment
-void sceNpManagerIntLoginSetSsoToken();
-// Empty Comment
-void sceNpManagerIntLoginValidateCredential();
-// Empty Comment
-void sceNpManagerIntLoginValidateKratosAuthCode();
-// Empty Comment
-void sceNpManagerIntLoginVerifyDeviceCode();
-// Empty Comment
-void sceNpManagerIntPfAuth();
-// Empty Comment
-void sceNpManagerIntRemovePlusMemberTypeCallback();
-// Empty Comment
-void sceNpManagerIntRevalidatePassword();
-// Empty Comment
+int32_t sceNpManagerIntLoginGet2svInfo(int32_t login_ctx_id, OrbisNp2svInfo* info);
+int32_t sceNpManagerIntLoginGetAccessToken(int32_t login_req_id, OrbisNpAccessToken* access_token);
+int32_t sceNpManagerIntLoginGetAccessTokenViaImplicitFlow(int32_t login_req_id, OrbisNpClientId* client_id, char* redirect_uri, char* scope, OrbisNpAccessToken* access_token, OrbisNpIdToken* id_token);
+int32_t sceNpManagerIntLoginGetAccountId(int32_t login_ctx_id, uint64_t* account_id);
+int32_t sceNpManagerIntLoginGetAuthenticateResponse(int32_t login_req_id, char* response_json, int32_t response_json_size);
+int32_t sceNpManagerIntLoginGetAuthorizationCode(int32_t login_req_id, OrbisNpClientId* client_id, char* redirect_uri, char* scope, OrbisNpAuthorizationCode* code);
+int32_t sceNpManagerIntLoginGetDeviceCodeInfo(int32_t login_req_id, OrbisNpDeviceName* device_name, OrbisNpDeviceCodeInfo* device_code_info);
+int32_t sceNpManagerIntLoginGetEmail(int32_t login_ctx_id, OrbisNpLoginId* login_id);
+int32_t sceNpManagerIntLoginGetOnlineId(int32_t login_ctx_id, OrbisNpOnlineId* online_id);
+int32_t sceNpManagerIntLoginGetUserId(int32_t login_ctx_id, int32_t* user_id);
+int32_t sceNpManagerIntLoginParseJsonUserInfo(char* json_user_info, OrbisNpManagerJsonUserInfo* user_info);
+int32_t sceNpManagerIntLoginResetSsoToken(int32_t login_ctx_id);
+int32_t sceNpManagerIntLoginRevalidatePassword(int32_t login_req_id, OrbisNpPassword* password);
+int32_t sceNpManagerIntLoginSetAccountInfo(int32_t login_ctx_id, uint64_t account_id, OrbisNpOnlineId* online_id);
+int32_t sceNpManagerIntLoginSetSsoToken(int32_t login_ctx_id, OrbisNpSsoToken* sso_token);
+int32_t sceNpManagerIntLoginSignin(int32_t login_req_id);
+int32_t sceNpManagerIntLoginValidateCredential(int32_t login_req_id, OrbisNpLoginId* login_id, OrbisNpPassword* password, bool validate_only);
+int32_t sceNpManagerIntLoginValidateKratosAuthCode(int32_t login_req_id, OrbisNpAuthorizationCode* code, OrbisNpKratosRedirectUri* redirect_uri);
+int32_t sceNpManagerIntLoginVerifyDeviceCode(int32_t login_req_id);
+int32_t sceNpManagerIntPfAuth(int32_t req_id, bool updates_user_clock);
+int32_t sceNpManagerIntRemovePlusMemberTypeCallback(int32_t cb_id);
+int32_t sceNpManagerIntRevalidatePassword(int32_t req_id, int32_t user_id, OrbisNpPassword* password);
 void sceNpManagerIntSetTimeout();
-// Empty Comment
-void sceNpManagerIntSignout();
-// Empty Comment
-void sceNpManagerIntTemporarySignout();
-// Empty Comment
-void sceNpManagerIntUpdateVshToken();
-// Empty Comment
-void sceNpManagerIntWebLoginRequired();
-// Empty Comment
+int32_t sceNpManagerIntSignout(int32_t user_id);
+int32_t sceNpManagerIntTemporarySignout(int32_t user_id);
+int32_t sceNpManagerIntUnbindOfflineAccountId(int32_t user_id);
+int32_t sceNpManagerIntUpdateVshToken(int32_t req_id, int32_t user_id, OrbisNpAccessToken* access_token);
+bool sceNpManagerIntWebLoginRequired(int32_t return_code);
 void sceNpManagerPrxStartVsh();
-// Empty Comment
 void sceNpManagerUtilConvertJidToNpId();
-// Empty Comment
 void sceNpManagerUtilConvertNpIdToJid();
-// Empty Comment
 void sceNpNotifyPlusFeature();
-// Empty Comment
 void sceNpPollAsync();
-// Empty Comment
 void sceNpPushInit();
-// Empty Comment
 void sceNpPushIntBeginInactive();
-// Empty Comment
 void sceNpPushIntEndInactive();
-// Empty Comment
 void sceNpPushIntGetConnectionState();
-// Empty Comment
 void sceNpRegisterGamePresenceCallback();
-// Empty Comment
 void sceNpRegisterGamePresenceCallbackA();
-// Empty Comment
 void sceNpRegisterNpReachabilityStateCallback();
-// Empty Comment
 void sceNpRegisterPlusEventCallback();
-// Empty Comment
 void sceNpRegisterStateCallback();
-// Empty Comment
 void sceNpRegisterStateCallbackA();
-// Empty Comment
 void sceNpServiceClientInit();
-// Empty Comment
 void sceNpServiceClientTerm();
-// Empty Comment
 void sceNpSetContentRestriction();
-// Empty Comment
 void sceNpSetGamePresenceOnlineA();
-// Empty Comment
 int32_t sceNpSetNpTitleId(OrbisNpTitleId* title_id, OrbisNpTitleSecret* title_secret);
-// Empty Comment
 void sceNpSetTimeout();
-// Empty Comment
 void sceNpUnregisterNpReachabilityStateCallback();
-// Empty Comment
 void sceNpUnregisterPlusEventCallback();
-// Empty Comment
 void sceNpUnregisterStateCallback();
-// Empty Comment
 void sceNpUnregisterStateCallbackA();
-// Empty Comment
 void sceNpWaitAsync();
 
 #ifdef __cplusplus
