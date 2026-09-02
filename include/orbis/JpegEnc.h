@@ -14,7 +14,7 @@ int32_t sceJpegEncCreate(const OrbisJpegEncCreateParam *, void*, uint32_t, Orbis
 // Empty Comment
 int32_t sceJpegEncDelete(OrbisJpegEncHandle);
 // Empty Comment
-int32_t sceJpegEncEncode(OrbisJpegEncHandle, const OrbisJpegEncEncodeParam *, OrbisJpgEncOutputInfo *);
+int32_t sceJpegEncEncode(OrbisJpegEncHandle, const OrbisJpegEncEncodeParam *, OrbisJpegEncOutputInfo *);
 // Empty Comment
 void sceJpegEncQueryMemorySize(OrbisJpegEncCreateParam *, void *, uint32_t, OrbisJpegEncHandle *);
 

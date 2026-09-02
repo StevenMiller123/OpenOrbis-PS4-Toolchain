@@ -345,3 +345,29 @@ typedef struct OrbisNpWebApiResponseInformationOption {
     uint64_t error_object_size;
     uint64_t response_data_size;
 } OrbisNpWebApiResponseInformationOption;
+
+// NpWebApi2
+typedef struct OrbisNpWebApi2ContentParameter {
+    uint64_t content_length;
+    char*    content_type;
+    uint8_t  padding[16];
+} OrbisNpWebApi2ContentParameter;
+
+typedef struct OrbisNpWebApi2PushEventDataType {
+    char val[65];
+} OrbisNpWebApi2PushEventDataType;
+
+typedef struct OrbisNpWebApi2PushEventFilterParameter {
+    OrbisNpWebApi2PushEventDataType data_type;
+    void*                           extd_data_key;
+    uint64_t                        extd_data_key_num;
+} OrbisNpWebApi2PushEventFilterParameter;
+
+typedef void (*OrbisNpWebApi2PushEventCallback)(int32_t user_ctx_id, int32_t callback_id, char* np_service_name, uint32_t np_service_label, OrbisNpPeerAddressA* to, OrbisNpOnlineId* to_online_id, OrbisNpPeerAddressA* from, OrbisNpOnlineId* from_online_id, OrbisNpWebApi2PushEventDataType* data_Type, char* data, uint64_t data_len, void* extd_data, uint64_t extd_data_num, void* user_arg);
+
+typedef struct OrbisNpWebApi2ResponseInformationOption {
+    int32_t  http_status;
+    void*    error_object;
+    uint64_t error_object_size;
+    uint64_t response_data_size;
+} OrbisNpWebApi2ResponseInformationOption;
