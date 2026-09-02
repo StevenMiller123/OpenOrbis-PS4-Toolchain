@@ -205,6 +205,17 @@ typedef struct OrbisNpIntCheckPlusResult {
     uint8_t reserved[32];
 } OrbisNpIntCheckPlusResult;
 
+typedef struct OrbisNpPeerAddress {
+    OrbisNpOnlineId online_id;
+    int32_t         platform;
+} OrbisNpPeerAddress;
+
+typedef struct OrbisNpPeerAddressA {
+    uint64_t account_id;
+    int32_t  platform;
+    uint8_t  padding[4];
+} OrbisNpPeerAddressA;
+
 // NpManager
 typedef struct OrbisNpManagerNpEnv {
     char    env[17];
@@ -287,3 +298,50 @@ typedef struct OrbisNpSnsYouTubeAccessTokenResult {
     char     access_token[4096];
     uint8_t  reserved[39];
 } OrbisNpSnsYouTubeAccessTokenResult;
+
+// NpWebApi
+typedef struct OrbisNpWebApiPushEventDataType {
+    char val[65];
+} OrbisNpWebApiPushEventDataType;
+
+typedef void (*OrbisNpWebApiPushEventCallback)(int32_t user_ctx_id, int32_t callback_id, OrbisNpPeerAddress* to, OrbisNpPeerAddress* from, OrbisNpWebApiPushEventDataType* data_type, char* data, uint64_t data_len, void* user_arg);
+typedef void (*OrbisNpWebApiServicePushEventCallback)(int32_t user_ctx_id, int32_t callback_id, char* np_service_name, uint32_t np_service_label, OrbisNpPeerAddress* to, OrbisNpPeerAddress* from, OrbisNpWebApiPushEventDataType* data_type, char* data, uint64_t data_len, void* user_arg);
+typedef void (*OrbisNpWebApiExtdPushEventCallback)(int32_t user_ctx_id, int32_t callback_id, char* np_service_name, uint32_t np_service_label, OrbisNpPeerAddress* to, OrbisNpPeerAddress* from, OrbisNpWebApiPushEventDataType* data_type, char* data, uint64_t data_len, void* extd_data, uint64_t extd_data_num, void* user_arg);
+typedef void (*OrbisNpWebApiExtdPushEventCallbackA)(int32_t user_ctx_id, int32_t callback_id, char* np_service_name, uint32_t np_service_label, OrbisNpPeerAddressA* to, OrbisNpPeerAddressA* from, OrbisNpWebApiPushEventDataType* data_type, char* data, uint64_t data_len, void* extd_data, uint64_t extd_data_num, void* user_arg);
+
+typedef struct OrbisNpWebApiPushEventDataType {
+    char val[65];
+} OrbisNpWebApiPushEventDataType;
+
+typedef struct OrbisNpWebApiExtdPushEventFilterParameter {
+    OrbisNpWebApiPushEventDataType data_type;
+    void*                          extd_data_key;
+    uint64_t                       extd_data_key_num;
+} OrbisNpWebApiExtdPushEventFilterParameter;
+
+typedef enum OrbisNpWebApiHttpMethod {
+    ORBIS_NP_WEBAPI_HTTP_METHOD_GET,
+    ORBIS_NP_WEBAPI_HTTP_METHOD_POST,
+    ORBIS_NP_WEBAPI_HTTP_METHOD_PUT,
+    ORBIS_NP_WEBAPI_HTTP_METHOD_DELETE
+} OrbisNpWebApiHttpMethod;
+
+typedef struct OrbisNpWebApiContentParameter {
+    uint64_t content_length;
+    char*    content_type;
+    uint8_t  padding[16];
+} OrbisNpWebApiContentParameter;
+
+typedef struct OrbisNpWebApiInitializeParameter {
+    int32_t  libhttp_ctx_id;
+    uint64_t pool_size;
+    char*    name;
+    uint64_t size;
+} OrbisNpWebApiInitializeParameter;
+
+typedef struct OrbisNpWebApiResponseInformationOption {
+    int32_t  http_status;
+    void*    error_object;
+    uint64_t error_object_size;
+    uint64_t response_data_size;
+} OrbisNpWebApiResponseInformationOption;
