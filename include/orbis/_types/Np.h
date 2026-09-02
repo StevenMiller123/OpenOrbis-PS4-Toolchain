@@ -223,6 +223,15 @@ typedef struct OrbisNpServiceChecker2FlagArray {
     uint32_t flag_bits[2];
 } OrbisNpServiceChecker2FlagArray;
 
+typedef struct OrbisNpTitleMetadataInfo {
+    char    default_title_name[128];
+    char    local_title_name[128];
+    char    default_icon_url[256];
+    char    local_icon_url[256];
+    int32_t parental_level;
+    char    content_id[48];
+} OrbisNpTitleMetadataInfo;
+
 // NpSns
 typedef struct OrbisNpSnsFbMissingPermission {
     char permissions[1024];
