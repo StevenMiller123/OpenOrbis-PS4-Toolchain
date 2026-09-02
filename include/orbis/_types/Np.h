@@ -171,6 +171,24 @@ typedef struct OrbisNpKratosRedirectUri {
 	char uri[1024];
 } OrbisNpKratosRedirectUri;
 
+typedef enum OrbisNpPlusInternalFeature : uint64_t {
+    ORBIS_NP_PLUS_INTERNAL_FEATURE_SHARE_PLAY = 1L
+} OrbisNpPlusInternalFeature;
+
+typedef struct OrbisNpIntCheckPlusParameter {
+    uint64_t                   size;
+    int32_t                    user_id;
+    uint8_t                    padding[4];
+    OrbisNpPlusInternalFeature feature;
+    uint8_t                    reserved[32];
+} OrbisNpIntCheckPlusParameter;
+
+typedef struct OrbisNpIntCheckPlusResult {
+    bool    authorized;
+    uint8_t padding[3];
+    uint8_t reserved[32];
+} OrbisNpIntCheckPlusResult;
+
 // NpManager
 typedef struct OrbisNpManagerNpEnv {
     char    env[17];
