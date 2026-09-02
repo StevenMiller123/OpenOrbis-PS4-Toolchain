@@ -309,10 +309,6 @@ typedef void (*OrbisNpWebApiServicePushEventCallback)(int32_t user_ctx_id, int32
 typedef void (*OrbisNpWebApiExtdPushEventCallback)(int32_t user_ctx_id, int32_t callback_id, char* np_service_name, uint32_t np_service_label, OrbisNpPeerAddress* to, OrbisNpPeerAddress* from, OrbisNpWebApiPushEventDataType* data_type, char* data, uint64_t data_len, void* extd_data, uint64_t extd_data_num, void* user_arg);
 typedef void (*OrbisNpWebApiExtdPushEventCallbackA)(int32_t user_ctx_id, int32_t callback_id, char* np_service_name, uint32_t np_service_label, OrbisNpPeerAddressA* to, OrbisNpPeerAddressA* from, OrbisNpWebApiPushEventDataType* data_type, char* data, uint64_t data_len, void* extd_data, uint64_t extd_data_num, void* user_arg);
 
-typedef struct OrbisNpWebApiPushEventDataType {
-    char val[65];
-} OrbisNpWebApiPushEventDataType;
-
 typedef struct OrbisNpWebApiExtdPushEventFilterParameter {
     OrbisNpWebApiPushEventDataType data_type;
     void*                          extd_data_key;
