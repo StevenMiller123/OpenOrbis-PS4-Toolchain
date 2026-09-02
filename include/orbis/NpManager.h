@@ -51,7 +51,7 @@ void sceNpGetNpReachabilityState();
 int32_t sceNpGetOnlineId(int32_t user_id, OrbisNpOnlineId* online_id);
 void sceNpGetParentalControlInfo();
 void sceNpGetParentalControlInfoA();
-void sceNpGetState();
+int32_t sceNpGetState(int32_t user_id, OrbisNpState* state);
 void sceNpGetUserIdByAccountId();
 void sceNpGetUserIdByOnlineId();
 int32_t sceNpHasSignedUp(int32_t user_id, bool* signed_up);
