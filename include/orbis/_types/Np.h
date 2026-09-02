@@ -4,18 +4,18 @@
 
 // NpTrophy
 typedef struct OrbisNpTrophyDetails {
-    size_t  size;              // this needs to be set with sizeof(OrbisNpTrophyDetails) or any function that calls with this data will return a error
-    int32_t trophy_id;         // Trophy ID, 0-XXXX
-    int32_t trophy_grade;      // Trophy rarity
-    int32_t trophy_group;      // Trophy group ID
-    bool    hidden;            // this determines if you can see the trophy before its unlocked
-    uint8_t reserved[3];
-    char    name[128];         // Trophy Name, EX: "UNLOCK ME"
-    char    description[1024]; // Description, EX: "This is what needs to be unlocked"
+    uint64_t size;              // this needs to be set with sizeof(OrbisNpTrophyDetails) or any function that calls with this data will return a error
+    int32_t  trophy_id;         // Trophy ID, 0-XXXX
+    int32_t  trophy_grade;      // Trophy rarity
+    int32_t  trophy_group;      // Trophy group ID
+    bool     hidden;            // this determines if you can see the trophy before its unlocked
+    uint8_t  reserved[3];
+    char     name[128];         // Trophy Name, EX: "UNLOCK ME"
+    char     description[1024]; // Description, EX: "This is what needs to be unlocked"
 } OrbisNpTrophyDetails;
 
 typedef struct OrbisNpTrophyData {
-    size_t   size;        // this needs to be set with sizeof(OrbisNpTrophyDetails) or any function that calls with this data will return a error
+    uint64_t size;        // this needs to be set with sizeof(OrbisNpTrophyDetails) or any function that calls with this data will return a error
     int32_t  trophy_id;   // Trophy ID, 0-XX for large scope trophy sets
     bool     unlocked;    // flag that tells if the trophy is locked or unlocked
     uint8_t  reserved[3];
@@ -230,7 +230,7 @@ typedef enum OrbisNpPlusMemberType {
 
 typedef void (*OrbisNpManagerPlusMemberTypeCallback)(int32_t user_id, OrbisNpPlusMemberType type, void* usr_arg);
 
-typedef enum OrbisNpManagerServerError {
+typedef struct OrbisNpManagerServerError {
     bool     error_received;
     uint8_t  padding[3];
     int32_t  status_code;
