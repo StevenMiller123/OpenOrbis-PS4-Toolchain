@@ -8,59 +8,32 @@
 extern "C" {
 #endif
 
-// Empty Comment
 void sceNpTrophyAbortHandle();
-// Empty Comment
 void sceNpTrophyCaptureScreenshot();
-// Empty Comment
 int32_t sceNpTrophyCreateContext(int32_t *context, int32_t user, uint32_t unk, uint64_t unk2);
-// Empty Comment
 int32_t sceNpTrophyCreateHandle(int32_t *handle);
-// Empty Comment
 int32_t sceNpTrophyDestroyContext(int32_t context);
-// Empty Comment
 int32_t sceNpTrophyDestroyHandle(int32_t handle);
-// Empty Comment
 void sceNpTrophyGetGameIcon();
-// Empty Comment
 void sceNpTrophyGetGameInfo();
-// Empty Comment
 void sceNpTrophyGetGroupIcon();
-// Empty Comment
 void sceNpTrophyGetGroupInfo();
-// Empty Comment
 void sceNpTrophyGetTrophyIcon();
-// Empty Comment
 int32_t sceNpTrophyGetTrophyInfo(int32_t context, int32_t handle, int32_t TRPID, OrbisNpTrophyDetails* details, OrbisNpTrophyData* data);
-// Empty Comment
 void sceNpTrophyGetTrophyUnlockState();
-// Empty Comment
-void sceNpTrophyIntAbortHandle();
-// Empty Comment
-void sceNpTrophyIntCheckNetSyncTitles();
-// Empty Comment
-void sceNpTrophyIntCreateHandle();
-// Empty Comment
-void sceNpTrophyIntDestroyHandle();
-// Empty Comment
-void sceNpTrophyIntGetLocalTrophySummary();
-// Empty Comment
-void sceNpTrophyIntGetProgress();
-// Empty Comment
-void sceNpTrophyIntGetRunningTitle();
-// Empty Comment
-void sceNpTrophyIntGetRunningTitles();
-// Empty Comment
-void sceNpTrophyIntGetTrpIconByUri();
-// Empty Comment
-void sceNpTrophyIntNetSyncTitles();
-// Empty Comment
+int32_t sceNpTrophyIntAbortHandle(int32_t handle);
+int32_t sceNpTrophyIntCheckNetSyncTitles(int32_t handle, int32_t user_id, uint32_t mode, bool* is_required);
+int32_t sceNpTrophyIntCreateHandle(int32_t* handle);
+int32_t sceNpTrophyIntDestroyHandle(int32_t handle);
+int32_t sceNpTrophyIntGetLocalTrophySummary(int32_t handle, int32_t user_id, OrbisNpTrophyLocalTrophySummary* summary);
+int32_t sceNpTrophyIntGetProgress(int32_t handle, int32_t* progress);
+int32_t sceNpTrophyIntGetRunningTitle(int32_t handle, OrbisNpTrophyTitleId* trophy_title_id);
+int32_td sceNpTrophyIntGetRunningTitles(int32_t handle, OrbisNpTrophyTitleId trophy_title_id_array[], int32_t num_array, int32_t* num_running);
+int32_t sceNpTrophyIntGetTrpIconByUri(int32_t handle, char* trp_url, void* buf, uint64_t buf_size, uint64_t* wsize);
+int32_t sceNpTrophyIntNetSyncTitles(int32_t handle, int32_t user_id, uint32_t mode);
 int32_t sceNpTrophyRegisterContext(int32_t context, int32_t handle, uint64_t unk);
-// Empty Comment
 int32_t sceNpTrophyShowTrophyList(int32_t Context, int32_t hadle);
-// Empty Comment
 void sceNpTrophySystemIsServerAvailable();
-// Empty Comment
 int32_t sceNpTrophyUnlockTrophy(int32_t context, int32_t handle, int32_t TrophyID, int32_t *PLATID);
 
 #ifdef __cplusplus

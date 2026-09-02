@@ -22,6 +22,22 @@ typedef struct OrbisNpTrophyData {
     uint64_t timestamp;   // time when the Trophy was unlocked
 } OrbisNpTrophyData;
 
+typedef struct OrbisNpTrophyNumInfo {
+    uint32_t num_platinum;
+    uint32_t num_gold;
+    uint32_t num_silver;
+    uint32_t num_bronze;
+} OrbisNpTrophyNumInfo;
+
+typedef struct OrbisNpTrophyLocalTrophySummary {
+    int32_t              user_id;
+    OrbisNpTrophyNumInfo earned_trophies;
+} OrbisNpTrophyLocalTrophySummary;
+
+typedef struct OrbisNpTrophyTitleId {
+    char trophy_title_id[33];
+} OrbisNpTrophyLocalTrophySummary;
+
 // NpCommon
 typedef struct OrbisNpOnlineId {
     char    data[16]; // account name, follows PSN schema, min 3/max 16
