@@ -121,54 +121,54 @@ typedef struct OrbisNpTitleToken {
 } OrbisNpTitleToken;
 
 typedef struct OrbisNp2svId {
-	char    id[257];
-	uint8_t padding[7];
+    char    id[257];
+    uint8_t padding[7];
 } OrbisNp2svId;
 
 typedef struct OrbisNp2svInfo {
-	OrbisNp2svId    id;
-	OrbisNpClientId client_id;
+    OrbisNp2svId    id;
+    OrbisNpClientId client_id;
 } OrbisNp2svInfo;
 
 typedef struct OrbisNpIdToken {
-	char    token[4097];
-	uint8_t padding[7];
+    char    token[4097];
+    uint8_t padding[7];
 } OrbisNpIdToken;
 
 typedef struct OrbisNpDeviceName {
-	char    name[66];
-	uint8_t padding[6];
+    char    name[66];
+    uint8_t padding[6];
 } OrbisNpDeviceName;
 
 typedef struct OrbisNpDeviceCode {
-	char    code[13];
-	uint8_t padding[3];
+    char    code[13];
+    uint8_t padding[3];
 } OrbisNpDeviceCode;
 
 typedef struct OrbisNpDeviceCodeInfo {
-	OrbisNpDeviceCode user_code;
-	uint32_t          expiration;
-	uint32_t          verify_internal;
+    OrbisNpDeviceCode user_code;
+    uint32_t          expiration;
+    uint32_t          verify_internal;
 } OrbisNpDeviceCodeInfo;
 
 typedef struct OrbisNpLoginId {
-	char    data[64];
-	uint8_t padding[4];
+    char    data[64];
+    uint8_t padding[4];
 } OrbisNpLoginId;
 
 typedef struct OrbisNpPassword {
-	char    data[33];
-	uint8_t padding[3];
+    char    data[33];
+    uint8_t padding[3];
 } OrbisNpPassword;
 
 typedef struct OrbisNpSsoToken {
-	char    token[1025];
-	uint8_t padding[7];
-	uint8_t reserved[8];
+    char    token[1025];
+    uint8_t padding[7];
+    uint8_t reserved[8];
 } OrbisNpSsoToken;
 
 typedef struct OrbisNpKratosRedirectUri {
-	char uri[1024];
+    char uri[1024];
 } OrbisNpKratosRedirectUri;
 
 typedef enum OrbisNpPlusInternalFeature : uint64_t {
@@ -212,8 +212,8 @@ typedef enum OrbisNpManagerServerError {
 } OrbisNpManagerServerError;
 
 typedef struct OrbisNpManagerJsonUserInfo {
-	uint64_t            account_id;
-	OrbisNpId           np_id;
-	OrbisNpCountryCode  country_code;
-	OrbisNpLanguageCode lang_code;
+    uint64_t            account_id;
+    OrbisNpId           np_id;
+    OrbisNpCountryCode  country_code;
+    OrbisNpLanguageCode lang_code;
 } OrbisNpManagerJsonUserInfo;
