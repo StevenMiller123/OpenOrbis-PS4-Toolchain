@@ -36,7 +36,7 @@ typedef struct OrbisNpTrophyLocalTrophySummary {
 
 typedef struct OrbisNpTrophyTitleId {
     char trophy_title_id[33];
-} OrbisNpTrophyLocalTrophySummary;
+} OrbisNpTrophyTitleId;
 
 // NpCommon
 typedef struct OrbisNpOnlineId {
