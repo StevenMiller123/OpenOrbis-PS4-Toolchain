@@ -222,3 +222,43 @@ typedef struct OrbisNpManagerJsonUserInfo {
 typedef struct OrbisNpServiceChecker2FlagArray {
     uint32_t flag_bits[2];
 } OrbisNpServiceChecker2FlagArray;
+
+// NpSns
+typedef struct OrbisNpSnsFbMissingPermission {
+    char permissions[1024];
+} OrbisNpSnsFbMissingPermission;
+
+typedef struct OrbisNpSnsFacebookAccessTokenResult {
+    uint64_t expiration;
+    char     access_token[4097];
+    uint8_t  reserved[39];
+} OrbisNpSnsFacebookAccessTokenResult;
+
+typedef struct OrbisNpSnsFbTitleName {
+    char name[129];
+} OrbisNpSnsFbTitleName;
+
+typedef enum OrbisNpSnsServiceType {
+    ORBIS_NP_SNS_SERVICE_TYPE_FACEBOOK,
+    ORBIS_NP_SNS_SERVICE_TYPE_TWITTER,
+    ORBIS_NP_SNS_SERVICE_TYPE_YOUTUBE,
+    ORBIS_NP_SNS_SERVICE_TYPE_USTREAM,
+    ORBIS_NP_SNS_SERVICE_TYPE_MAX,
+    ORBIS_NP_SNS_SERVICE_TYPE_INVALID
+} OrbisNpSnsServiceType;
+
+typedef struct OrbisNpSnsTwitterAccessToken {
+    char    access_token[1024];
+    char    access_token_secret[1024];
+    uint8_t reserved[32];
+} OrbisNpSnsTwitterAccessToken;
+
+typedef struct OrbisNpSnsYtUrlForPermission {
+    char url[2048];
+} OrbisNpSnsYtUrlForPermission;
+
+typedef struct OrbisNpSnsYouTubeAccessTokenResult {
+    uint64_t expiration;
+    char     access_token[4096];
+    uint8_t  reserved[39];
+} OrbisNpSnsYouTubeAccessTokenResult;
