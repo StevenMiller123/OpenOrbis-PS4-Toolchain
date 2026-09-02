@@ -217,3 +217,8 @@ typedef struct OrbisNpManagerJsonUserInfo {
     OrbisNpCountryCode  country_code;
     OrbisNpLanguageCode lang_code;
 } OrbisNpManagerJsonUserInfo;
+
+// NpUtility
+typedef struct OrbisNpServiceChecker2FlagArray {
+    uint32_t flag_bits[2];
+} OrbisNpServiceChecker2FlagArray;
