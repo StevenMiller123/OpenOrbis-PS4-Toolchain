@@ -53,8 +53,6 @@ jobs:
         run: | 
           echo "OO_PS4_TOOLCHAIN=$GITHUB_WORKSPACE" >> $GITHUB_ENV
           echo "llvm_path=${{ runner.tool_cache }}/llvm" >> $GITHUB_ENV
-          # llvm 13 fix for ci
-          sudo apt install libncurses5
 
       - name: Cache LLVM and Clang (21)
         id: cache-llvm
