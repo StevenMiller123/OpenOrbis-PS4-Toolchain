@@ -272,9 +272,9 @@ void sceNetPppoeStart();
 // Empty Comment
 void sceNetPppoeStop();
 // Empty Comment
-int32_t sceNetRecv(OrbisNetId, void*, size_t, int);
+int32_t sceNetRecv(OrbisNetId, void*, uint64_t, int);
 // Empty Comment
-int32_t sceNetRecvfrom(OrbisNetId, void*, size_t, int32_t, OrbisNetSockaddr*, OrbisNetSocklen_t*);
+int32_t sceNetRecvfrom(OrbisNetId, void*, uint64_t, int32_t, OrbisNetSockaddr*, OrbisNetSocklen_t*);
 // Empty Comment
 int32_t sceNetRecvmsg(OrbisNetId, OrbisNetMsghdr*, int);
 // Empty Comment
@@ -298,11 +298,11 @@ void sceNetResolverStartNtoaMultipleRecords();
 // Empty Comment
 void sceNetResolverStartNtoaMultipleRecordsEx();
 // Empty Comment
-int32_t sceNetSend(OrbisNetId, const void*, size_t, int);
+int32_t sceNetSend(OrbisNetId, const void*, uint64_t, int);
 // Empty Comment
 int32_t sceNetSendmsg(OrbisNetId, const OrbisNetMsghdr*, int);
 // Empty Comment
-int32_t sceNetSendto(OrbisNetId, const void*, size_t, int32_t, const OrbisNetSockaddr*, OrbisNetSocklen_t);
+int32_t sceNetSendto(OrbisNetId, const void*, uint64_t, int32_t, const OrbisNetSockaddr*, OrbisNetSocklen_t);
 // Empty Comment
 void sceNetSetDnsInfo();
 // Empty Comment

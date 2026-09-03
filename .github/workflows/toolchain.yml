@@ -18,7 +18,7 @@ jobs:
   build:
     strategy:
       fail-fast: false
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     steps:
 
       - name: Checkout OOSDK

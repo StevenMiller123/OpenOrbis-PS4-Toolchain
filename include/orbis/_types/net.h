@@ -48,7 +48,7 @@ typedef struct OrbisNetSockaddrUn
 
 typedef struct OrbisNetIovec {
 	void *iov_base;
-	size_t iov_len;
+	uint64_t iov_len;
 } OrbisNetIovec;
 
 typedef struct OrbisNetMsghdr {
