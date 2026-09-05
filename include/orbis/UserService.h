@@ -13,6 +13,7 @@ extern "C" {
 int32_t sceUserServiceGetInitialUser(int32_t *);
 int32_t sceUserServiceGetUserName(int32_t, char *, const size_t);
 int32_t sceUserServiceInitialize(void *);
+int32_t sceUserServiceInitialize2(int32_t, int32_t);
 int32_t sceUserServiceGetLoginUserIdList(OrbisUserServiceLoginUserIdList *);
 int32_t sceUserServiceGetForegroundUser(int32_t* user_id);
 int32_t sceUserServiceGetNpAccountId(const OrbisUserServiceUserId, uint64_t *account_id);
@@ -184,7 +185,6 @@ void sceUserServiceGetVolumeForController();
 void sceUserServiceGetVolumeForGenericUSB();
 void sceUserServiceGetVolumeForMorpheusSidetone();
 void sceUserServiceGetVolumeForSidetone();
-void sceUserServiceInitialize2();
 void sceUserServiceIsGuestUser();
 void sceUserServiceIsKratosPrimaryUser();
 void sceUserServiceIsKratosUser();
