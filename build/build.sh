@@ -4,8 +4,8 @@
 export CC="clang"
 export CXX="clang++"
 export AR="llvm-ar"
-export LLVM_PATH="/llvm-project-openorbis/llvm"
-export OO_PS4_TOOLCHAIN="/OpenOrbis-PS4-Toolchain"
+export LLVM_PATH="./llvm-project-openorbis/llvm"
+export OO_PS4_TOOLCHAIN="./OpenOrbis-PS4-Toolchain"
 export OO_SYSROOT="$OO_PS4_TOOLCHAIN"
 # These flags are used everywhere, so let's reuse them.
 export CFLAGS="-fPIC -DPS4 -D_LIBUNWIND_IS_BAREMETAL=1"
@@ -19,104 +19,115 @@ rm -rf llvm-project-openorbis
 mkdir ps4
 
 # Pull source code
-git clone --depth=1 https://github.com/StevenMiller123/OpenOrbis-PS4-Toolchain && rm -rf /OpenOrbis-PS4-Toolchain/.git
+git clone --depth=1 https://github.com/StevenMiller123/OpenOrbis-PS4-Toolchain && rm -rf ./OpenOrbis-PS4-Toolchain/.git
 git clone --depth=1 https://github.com/StevenMiller123/musl-openorbis
 git clone --depth=1 https://github.com/StevenMiller123/llvm-project-openorbis
 
 # Build musl
-cd /musl-openorbis
+cd ./musl-openorbis
 ./configure --target=x86_64-scei-ps4 --disable-shared CC="$CC" CFLAGS="$CFLAGS" --prefix=/ps4
 make && make install
+cd ..
 
 # Build compiler-rt
-mkdir /llvm-project-openorbis/compiler-rt/build && cd /llvm-project-openorbis/compiler-rt/build
-cmake -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS" -DLLVM_PATH="$LLVM_PATH" -DCOMPILER_RT_DEFAULT_TARGET_TRIPLE="x86_64-scei-ps4" -DCOMPILER_RT_BAREMETAL_BUILD=YES -DCOMPILER_RT_BUILD_BUILTINS=ON -DCOMPILER_RT_BUILD_CRT=OFF -DCOMPILER_RT_BUILD_SANITIZERS=OFF -DCOMPILER_RT_BUILD_XRAY=OFF -DCOMPILER_RT_BUILD_LIBFUZZER=OFF -DCOMPILER_RT_BUILD_PROFILE=OFF .. && make
+mkdir ./llvm-project-openorbis/compiler-rt/build
+cmake -B ./llvm-project-openorbis/compiler-rt/build -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS" -DLLVM_PATH="$LLVM_PATH" -DCOMPILER_RT_DEFAULT_TARGET_TRIPLE="x86_64-scei-ps4" -DCOMPILER_RT_BAREMETAL_BUILD=YES -DCOMPILER_RT_BUILD_BUILTINS=ON -DCOMPILER_RT_BUILD_CRT=OFF -DCOMPILER_RT_BUILD_SANITIZERS=OFF -DCOMPILER_RT_BUILD_XRAY=OFF -DCOMPILER_RT_BUILD_LIBFUZZER=OFF -DCOMPILER_RT_BUILD_PROFILE=OFF .. && make
+
 
 # Build libunwind
-mkdir /llvm-project-openorbis/libunwind/build && cd /llvm-project-openorbis/libunwind/build
-cmake -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS" -DLLVM_PATH="$LLVM_PATH" -DLIBUNWIND_USE_COMPILER_RT=YES -DLIBUNWIND_BUILD_32_BITS=NO -DLIBUNWIND_ENABLE_STATIC=ON -DLIBUNWIND_USE_COMPILER_RT=YES -DLIBUNWIND_ENABLE_SHARED=OFF .. && make
+mkdir ./llvm-project-openorbis/libunwind/build
+cmake -B ./llvm-project-openorbis/libunwind/build -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS" -DLLVM_PATH="$LLVM_PATH" -DLIBUNWIND_USE_COMPILER_RT=YES -DLIBUNWIND_BUILD_32_BITS=NO -DLIBUNWIND_ENABLE_STATIC=ON -DLIBUNWIND_USE_COMPILER_RT=YES -DLIBUNWIND_ENABLE_SHARED=OFF .. && make
 
 # Build libcxxabi
-mkdir /llvm-project-openorbis/libcxxabi/build && cd /llvm-project-openorbis/libcxxabi/build
-cmake -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS -I$OO_PS4_TOOLCHAIN/include" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS -I$OO_PS4_TOOLCHAIN/include" -DLLVM_PATH="$LLVM_PATH" -DLIBCXXABI_ENABLE_SHARED=NO -DLIBCXXABI_ENABLE_STATIC=YES -DLIBCXXABI_ENABLE_EXCEPTIONS=YES -DLIBCXXABI_USE_COMPILER_RT=YES -DLIBCXXABI_USE_LLVM_UNWINDER=YES -DLIBCXXABI_LIBUNWIND_PATH="/llvm-project-openorbis/libunwind" -DLIBCXXABI_LIBCXX_INCLUDES="/llvm-project-openorbis/libcxx/include" -DLIBCXXABI_ENABLE_PIC=YES .. && make
+mkdir ./llvm-project-openorbis/libcxxabi/build
+cmake -B ./llvm-project-openorbis/libcxxabi/build -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS -I$OO_PS4_TOOLCHAIN/include" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS -I$OO_PS4_TOOLCHAIN/include" -DLLVM_PATH="$LLVM_PATH" -DLIBCXXABI_ENABLE_SHARED=NO -DLIBCXXABI_ENABLE_STATIC=YES -DLIBCXXABI_ENABLE_EXCEPTIONS=YES -DLIBCXXABI_USE_COMPILER_RT=YES -DLIBCXXABI_USE_LLVM_UNWINDER=YES -DLIBCXXABI_LIBUNWIND_PATH="/llvm-project-openorbis/libunwind" -DLIBCXXABI_LIBCXX_INCLUDES="/llvm-project-openorbis/libcxx/include" -DLIBCXXABI_ENABLE_PIC=YES .. && make
 
 # Build libcxx
-mkdir /llvm-project-openorbis/libcxx/build && cd /llvm-project-openorbis/libcxx/build
-cmake -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS -I$OO_PS4_TOOLCHAIN/include" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS -I$OO_PS4_TOOLCHAIN/include" -DLLVM_PATH="$LLVM_PATH" -DLIBCXX_ENABLE_RTTI=YES -DLIBCXX_HAS_MUSL_LIBC=YES -DLIBCXX_ENABLE_SHARED=NO -DLIBCXX_CXX_ABI=libcxxabi -DLIBCXX_CXX_ABI_INCLUDE_PATHS="/llvm-project-openorbis/libcxxabi/include" -DLIBCXX_CXX_ABI_LIBRARY_PATH="/llvm-project-openorbis/libcxxabi/build/lib" .. && make
+mkdir ./llvm-project-openorbis/libcxx/build
+cmake -B ./llvm-project-openorbis/libcxx/build -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS -I$OO_PS4_TOOLCHAIN/include" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS -I$OO_PS4_TOOLCHAIN/include" -DLLVM_PATH="$LLVM_PATH" -DLIBCXX_ENABLE_RTTI=YES -DLIBCXX_HAS_MUSL_LIBC=YES -DLIBCXX_ENABLE_SHARED=NO -DLIBCXX_CXX_ABI=libcxxabi -DLIBCXX_CXX_ABI_INCLUDE_PATHS="/llvm-project-openorbis/libcxxabi/include" -DLIBCXX_CXX_ABI_LIBRARY_PATH="/llvm-project-openorbis/libcxxabi/build/lib" .. && make
 
 # Build create-eboot and create-lib
-cd /OpenOrbis-PS4-Toolchain/src/tools/create-eboot
+cd ./OpenOrbis-PS4-Toolchain/src/tools/create-eboot
 
-GOOS=windows GOARCH=amd64 go build -ldflags='-X main.TOOL_MODE=SELF' -o create-eboot.exe && mv ./create-eboot.exe /OpenOrbis-PS4-Toolchain/bin/windows/create-eboot.exe
-GOOS=windows GOARCH=amd64 go build -ldflags='-X main.TOOL_MODE=SPRX' -o create-lib.exe   && mv ./create-lib.exe   /OpenOrbis-PS4-Toolchain/bin/windows/create-lib.exe
+GOOS=windows GOARCH=amd64 go build -ldflags='-X main.TOOL_MODE=SELF' -o create-eboot.exe && mv ./create-eboot.exe ../../../bin/windows/create-eboot.exe
+GOOS=windows GOARCH=amd64 go build -ldflags='-X main.TOOL_MODE=SPRX' -o create-lib.exe   && mv ./create-lib.exe   ../../../bin/windows/create-lib.exe
 
-GOOS=linux   GOARCH=amd64 go build -ldflags='-X main.TOOL_MODE=SELF' -o create-eboot     && mv ./create-eboot     /OpenOrbis-PS4-Toolchain/bin/linux/create-eboot
-GOOS=linux   GOARCH=amd64 go build -ldflags='-X main.TOOL_MODE=SPRX' -o create-lib       && mv ./create-lib       /OpenOrbis-PS4-Toolchain/bin/linux/create-lib
+GOOS=linux   GOARCH=amd64 go build -ldflags='-X main.TOOL_MODE=SELF' -o create-eboot     && mv ./create-eboot     ../../../bin/linux/create-eboot
+GOOS=linux   GOARCH=amd64 go build -ldflags='-X main.TOOL_MODE=SPRX' -o create-lib       && mv ./create-lib       ../../../bin/linux/create-lib
 
-GOOS=darwin  GOARCH=amd64 go build -ldflags='-X main.TOOL_MODE=SELF' -o create-eboot     && mv ./create-eboot     /OpenOrbis-PS4-Toolchain/bin/macos/create-eboot
-GOOS=darwin  GOARCH=amd64 go build -ldflags='-X main.TOOL_MODE=SPRX' -o create-lib       && mv ./create-lib       /OpenOrbis-PS4-Toolchain/bin/macos/create-lib
+GOOS=darwin  GOARCH=amd64 go build -ldflags='-X main.TOOL_MODE=SELF' -o create-eboot     && mv ./create-eboot     ../../../bin/macos/create-eboot
+GOOS=darwin  GOARCH=amd64 go build -ldflags='-X main.TOOL_MODE=SPRX' -o create-lib       && mv ./create-lib       ../../../bin/macos/create-lib
+
+# Return to root
+cd ../../../..
 
 # Build create-gp4
-cd /OpenOrbis-PS4-Toolchain/src/tools/create-gp4
+cd ./OpenOrbis-PS4-Toolchain/src/tools/create-gp4
 
-GOOS=windows GOARCH=amd64 go build -o create-gp4.exe && mv ./create-gp4.exe /OpenOrbis-PS4-Toolchain/bin/windows/create-gp4.exe
-GOOS=linux   GOARCH=amd64 go build -o create-gp4     && mv ./create-gp4     /OpenOrbis-PS4-Toolchain/bin/linux/create-gp4
-GOOS=darwin  GOARCH=amd64 go build -o create-gp4     && mv ./create-gp4     /OpenOrbis-PS4-Toolchain/bin/macos/create-gp4
+GOOS=windows GOARCH=amd64 go build -o create-gp4.exe && mv ./create-gp4.exe ../../../bin/windows/create-gp4.exe
+GOOS=linux   GOARCH=amd64 go build -o create-gp4     && mv ./create-gp4     ../../../bin/linux/create-gp4
+GOOS=darwin  GOARCH=amd64 go build -o create-gp4     && mv ./create-gp4     ../../../bin/macos/create-gp4
+
+# Return to root
+cd ../../../..
 
 # Build readelf
-cd /OpenOrbis-PS4-Toolchain/src/tools/readelf
+cd ./OpenOrbis-PS4-Toolchain/src/tools/readelf
 
-GOOS=windows GOARCH=amd64 go build -o readelf.exe && mv ./readelf.exe /OpenOrbis-PS4-Toolchain/bin/windows/readelf.exe
-GOOS=linux   GOARCH=amd64 go build -o readelf     && mv ./readelf     /OpenOrbis-PS4-Toolchain/bin/linux/readelf
-GOOS=darwin  GOARCH=amd64 go build -o readelf     && mv ./readelf     /OpenOrbis-PS4-Toolchain/bin/macos/readelf
+GOOS=windows GOARCH=amd64 go build -o readelf.exe && mv ./readelf.exe ../../../bin/windows/readelf.exe
+GOOS=linux   GOARCH=amd64 go build -o readelf     && mv ./readelf     ../../../bin/linux/readelf
+GOOS=darwin  GOARCH=amd64 go build -o readelf     && mv ./readelf     ../../../bin/macos/readelf
+
+# Return to root
+cd ../../../..
 
 # Pull maxton's publishing tools (<3)
 # Sadly maxton has passed on, we have forked the repository and will continue to update it in the future. RIP <3
-cd /OpenOrbis-PS4-Toolchain/bin/windows && wget https://github.com/maxton/LibOrbisPkg/releases/download/v0.2/PkgEditor-0.2.231.zip              && wget https://github.com/maxton/LibOrbisPkg/releases/download/v0.2/PkgTool.Core-0.2.231.zip && unzip PkgEditor-0.2.231.zip && unzip PkgTool.Core-0.2.231.zip && rm PkgEditor-0.2.231.zip && rm PkgTool.Core-0.2.231.zip
-cd /OpenOrbis-PS4-Toolchain/bin/linux   && wget https://github.com/maxton/LibOrbisPkg/releases/download/v0.2/PkgTool.Core-linux-x64-0.2.231.zip && unzip PkgTool.Core-linux-x64-0.2.231.zip && rm PkgTool.Core-linux-x64-0.2.231.zip && chmod +x PkgTool.Core
-cd /OpenOrbis-PS4-Toolchain/bin/macos   && wget https://github.com/maxton/LibOrbisPkg/releases/download/v0.2/PkgTool.Core-osx-x64-0.2.231.zip   && unzip PkgTool.Core-osx-x64-0.2.231.zip && rm PkgTool.Core-osx-x64-0.2.231.zip && chmod +x PkgTool.Core
+cd ./OpenOrbis-PS4-Toolchain/bin/windows && wget https://github.com/maxton/LibOrbisPkg/releases/download/v0.2/PkgEditor-0.2.231.zip              && wget https://github.com/maxton/LibOrbisPkg/releases/download/v0.2/PkgTool.Core-0.2.231.zip && unzip PkgEditor-0.2.231.zip && unzip PkgTool.Core-0.2.231.zip && rm PkgEditor-0.2.231.zip && rm PkgTool.Core-0.2.231.zip
+cd ./OpenOrbis-PS4-Toolchain/bin/linux   && wget https://github.com/maxton/LibOrbisPkg/releases/download/v0.2/PkgTool.Core-linux-x64-0.2.231.zip && unzip PkgTool.Core-linux-x64-0.2.231.zip && rm PkgTool.Core-linux-x64-0.2.231.zip && chmod +x PkgTool.Core
+cd ./OpenOrbis-PS4-Toolchain/bin/macos   && wget https://github.com/maxton/LibOrbisPkg/releases/download/v0.2/PkgTool.Core-osx-x64-0.2.231.zip   && unzip PkgTool.Core-osx-x64-0.2.231.zip && rm PkgTool.Core-osx-x64-0.2.231.zip && chmod +x PkgTool.Core
 
 # Copy crtlib
-cd /OpenOrbis-PS4-Toolchain/src/crt && as crtlib.S -o crtlib.o && mv crtlib.o /OpenOrbis-PS4-Toolchain/lib
+cd ./OpenOrbis-PS4-Toolchain/src/crt && as crtlib.S -o crtlib.o && mv crtlib.o ../../lib && cd ../../..
 
 # Copy musl built libs
-cd /ps4 && cp -r lib /OpenOrbis-PS4-Toolchain
+cd ./ps4 && cp -r lib ../OpenOrbis-PS4-Toolchain && cd ..
 
 # Build library stubs
-cd /OpenOrbis-PS4-Toolchain/src/lib && make && cp /OpenOrbis-PS4-Toolchain/src/lib/build/lib/* /OpenOrbis-PS4-Toolchain/lib
-rm -r /OpenOrbis-PS4-Toolchain/src/lib/build/lib/*.so && rm -r /OpenOrbis-PS4-Toolchain/src/lib/build/*.o
+cd ./OpenOrbis-PS4-Toolchain/src/lib && make && cp ./build/lib/* ../../lib && cd ../../..
+rm -r ./OpenOrbis-PS4-Toolchain/src/lib/build/lib/*.so && rm -r ./OpenOrbis-PS4-Toolchain/src/lib/build/*.o
 
 # Build example stub
-cd /OpenOrbis-PS4-Toolchain/samples/library_example && make
+cd ./OpenOrbis-PS4-Toolchain/samples/library_example && make && cd ../../..
 
 # Copy the libc++ libraries
-cp /llvm-project-openorbis/compiler-rt/build/lib/linux/* /OpenOrbis-PS4-Toolchain/lib
-cp /llvm-project-openorbis/libcxx/build/lib/* /OpenOrbis-PS4-Toolchain/lib
-cp /llvm-project-openorbis/libcxxabi/build/lib/* /OpenOrbis-PS4-Toolchain/lib
-cp /llvm-project-openorbis/libunwind/build/lib/* /OpenOrbis-PS4-Toolchain/lib
+cp ./llvm-project-openorbis/compiler-rt/build/lib/linux/* ./OpenOrbis-PS4-Toolchain/lib
+cp ./llvm-project-openorbis/libcxx/build/lib/* ./OpenOrbis-PS4-Toolchain/lib
+cp ./llvm-project-openorbis/libcxxabi/build/lib/* ./OpenOrbis-PS4-Toolchain/lib
+cp ./llvm-project-openorbis/libunwind/build/lib/* ./OpenOrbis-PS4-Toolchain/lib
 
 # Combine libc++, libc++abi and libunwind into a single archive
-touch /mri.txt
-echo "CREATE libc++M.a"   >> /mri.txt
-echo "ADDLIB libunwind.a" >> /mri.txt
-echo "ADDLIB libc++abi.a" >> /mri.txt
-echo "ADDLIB libc++.a"    >> /mri.txt
-echo "SAVE"               >> /mri.txt
-echo "END"                >> /mri.txt
-cd /OpenOrbis-PS4-Toolchain/lib && $AR -M < /mri.txt && rm /mri.txt && rm libc++.a && mv libc++M.a libc++.a
+touch ./mri.txt
+echo "CREATE libc++M.a"   >> ./mri.txt
+echo "ADDLIB libunwind.a" >> ./mri.txt
+echo "ADDLIB libc++abi.a" >> ./mri.txt
+echo "ADDLIB libc++.a"    >> ./mri.txt
+echo "SAVE"               >> ./mri.txt
+echo "END"                >> ./mri.txt
+cd ./OpenOrbis-PS4-Toolchain/lib && $AR -M < ../../mri.txt && rm ../../mri.txt && rm libc++.a && mv libc++M.a libc++.a && cd ../..
 
 # Merge compiler-rt into libc
-touch /mri.txt
-echo "CREATE libcM.a"                       >> /mri.txt
-echo "ADDLIB libc.a"                        >> /mri.txt
-echo "ADDLIB libclang_rt.builtins-x86_64.a" >> /mri.txt
-echo "SAVE"                                 >> /mri.txt
-echo "END"                                  >> /mri.txt
-cd /OpenOrbis-PS4-Toolchain/lib && $AR -M < /mri.txt && rm /mri.txt && rm libc.a && mv libcM.a libc.a
+touch ./mri.txt
+echo "CREATE libcM.a"                       >> ./mri.txt
+echo "ADDLIB libc.a"                        >> ./mri.txt
+echo "ADDLIB libclang_rt.builtins-x86_64.a" >> ./mri.txt
+echo "SAVE"                                 >> ./mri.txt
+echo "END"                                  >> ./mri.txt
+cd ./OpenOrbis-PS4-Toolchain/lib && $AR -M < ../../mri.txt && rm ../../mri.txt && rm libc.a && mv libcM.a libc.a && cd ../..
 
 # Cleanup
-rm -rf /ps4 && rm -rf /musl-openorbis && rm -rf /llvm-project-openorbis
+rm -rf ./ps4 && rm -rf ./musl-openorbis && rm -rf ./llvm-project-openorbis
 
 # Create a tarball
-mkdir /out && cd /out
-tar -cvzf OpenOrbis-PS4-Toolchain.tar.gz /OpenOrbis-PS4-Toolchain
+mkdir ./out && cd ./out
+tar -cvzf OpenOrbis-PS4-Toolchain.tar.gz ../OpenOrbis-PS4-Toolchain
