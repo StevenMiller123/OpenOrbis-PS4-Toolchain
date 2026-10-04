@@ -13,9 +13,9 @@ export CFLAGS="-fPIC -DPS4 -D_LIBUNWIND_IS_BAREMETAL=1"
 export CXXFLAGS=""
 
 rm -rf OpenOrbis-PS4-Toolchain
-rm -rf musl
+rm -rf musl-openorbis
 rm -rf ps4
-rm -rf llvm-project
+rm -rf llvm-project-openorbis
 mkdir ps4
 
 # Pull source code
@@ -24,7 +24,7 @@ git clone --depth=1 https://github.com/StevenMiller123/musl-openorbis
 git clone --depth=1 https://github.com/StevenMiller123/llvm-project-openorbis
 
 # Build musl
-cd /musl
+cd /musl-openorbis
 ./configure --target=x86_64-scei-ps4 --disable-shared CC="$CC" CFLAGS="$CFLAGS" --prefix=/ps4
 make && make install
 
