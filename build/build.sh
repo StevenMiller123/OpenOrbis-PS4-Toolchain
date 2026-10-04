@@ -4,7 +4,7 @@
 export CC="clang"
 export CXX="clang++"
 export AR="llvm-ar"
-export LLVM_PATH="/llvm-project/llvm"
+export LLVM_PATH="/llvm-project-openorbis/llvm"
 export OO_PS4_TOOLCHAIN="/OpenOrbis-PS4-Toolchain"
 export OO_SYSROOT="$OO_PS4_TOOLCHAIN"
 # These flags are used everywhere, so let's reuse them.
@@ -19,9 +19,9 @@ rm -rf llvm-project
 mkdir ps4
 
 # Pull source code
-git clone --depth=1 https://github.com/OpenOrbis/OpenOrbis-PS4-Toolchain && rm -rf /OpenOrbis-PS4-Toolchain/.git
-git clone --depth=1 https://github.com/OpenOrbis/musl
-git clone --depth=1 https://github.com/OpenOrbis/llvm-project
+git clone --depth=1 https://github.com/StevenMiller123/OpenOrbis-PS4-Toolchain && rm -rf /OpenOrbis-PS4-Toolchain/.git
+git clone --depth=1 https://github.com/StevenMiller123/musl-openorbis
+git clone --depth=1 https://github.com/StevenMiller123/llvm-project-openorbis
 
 # Build musl
 cd /musl
@@ -29,20 +29,20 @@ cd /musl
 make && make install
 
 # Build compiler-rt
-mkdir /llvm-project/compiler-rt/build && cd /llvm-project/compiler-rt/build
+mkdir /llvm-project-openorbis/compiler-rt/build && cd /llvm-project-openorbis/compiler-rt/build
 cmake -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS" -DLLVM_PATH="$LLVM_PATH" -DCOMPILER_RT_DEFAULT_TARGET_TRIPLE="x86_64-scei-ps4" -DCOMPILER_RT_BAREMETAL_BUILD=YES -DCOMPILER_RT_BUILD_BUILTINS=ON -DCOMPILER_RT_BUILD_CRT=OFF -DCOMPILER_RT_BUILD_SANITIZERS=OFF -DCOMPILER_RT_BUILD_XRAY=OFF -DCOMPILER_RT_BUILD_LIBFUZZER=OFF -DCOMPILER_RT_BUILD_PROFILE=OFF .. && make
 
 # Build libunwind
-mkdir /llvm-project/libunwind/build && cd /llvm-project/libunwind/build
+mkdir /llvm-project-openorbis/libunwind/build && cd /llvm-project-openorbis/libunwind/build
 cmake -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS" -DLLVM_PATH="$LLVM_PATH" -DLIBUNWIND_USE_COMPILER_RT=YES -DLIBUNWIND_BUILD_32_BITS=NO -DLIBUNWIND_ENABLE_STATIC=ON -DLIBUNWIND_USE_COMPILER_RT=YES -DLIBUNWIND_ENABLE_SHARED=OFF .. && make
 
 # Build libcxxabi
-mkdir /llvm-project/libcxxabi/build && cd /llvm-project/libcxxabi/build
-cmake -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS -I$OO_PS4_TOOLCHAIN/include" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS -I$OO_PS4_TOOLCHAIN/include" -DLLVM_PATH="$LLVM_PATH" -DLIBCXXABI_ENABLE_SHARED=NO -DLIBCXXABI_ENABLE_STATIC=YES -DLIBCXXABI_ENABLE_EXCEPTIONS=YES -DLIBCXXABI_USE_COMPILER_RT=YES -DLIBCXXABI_USE_LLVM_UNWINDER=YES -DLIBCXXABI_LIBUNWIND_PATH="/llvm-project/libunwind" -DLIBCXXABI_LIBCXX_INCLUDES="/llvm-project/libcxx/include" -DLIBCXXABI_ENABLE_PIC=YES .. && make
+mkdir /llvm-project-openorbis/libcxxabi/build && cd /llvm-project-openorbis/libcxxabi/build
+cmake -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS -I$OO_PS4_TOOLCHAIN/include" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS -I$OO_PS4_TOOLCHAIN/include" -DLLVM_PATH="$LLVM_PATH" -DLIBCXXABI_ENABLE_SHARED=NO -DLIBCXXABI_ENABLE_STATIC=YES -DLIBCXXABI_ENABLE_EXCEPTIONS=YES -DLIBCXXABI_USE_COMPILER_RT=YES -DLIBCXXABI_USE_LLVM_UNWINDER=YES -DLIBCXXABI_LIBUNWIND_PATH="/llvm-project-openorbis/libunwind" -DLIBCXXABI_LIBCXX_INCLUDES="/llvm-project-openorbis/libcxx/include" -DLIBCXXABI_ENABLE_PIC=YES .. && make
 
 # Build libcxx
-mkdir /llvm-project/libcxx/build && cd /llvm-project/libcxx/build
-cmake -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS -I$OO_PS4_TOOLCHAIN/include" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS -I$OO_PS4_TOOLCHAIN/include" -DLLVM_PATH="$LLVM_PATH" -DLIBCXX_ENABLE_RTTI=YES -DLIBCXX_HAS_MUSL_LIBC=YES -DLIBCXX_ENABLE_SHARED=NO -DLIBCXX_CXX_ABI=libcxxabi -DLIBCXX_CXX_ABI_INCLUDE_PATHS="/llvm-project/libcxxabi/include" -DLIBCXX_CXX_ABI_LIBRARY_PATH="/llvm-project/libcxxabi/build/lib" .. && make
+mkdir /llvm-project-openorbis/libcxx/build && cd /llvm-project-openorbis/libcxx/build
+cmake -DCMAKE_C_COMPILER="$CC" -DCMAKE_CXX_COMPILER="$CXX" -DCMAKE_C_FLAGS="$CFLAGS -I$OO_PS4_TOOLCHAIN/include" -DCMAKE_CXX_FLAGS="$CFLAGS $CXXFLAGS -I$OO_PS4_TOOLCHAIN/include" -DLLVM_PATH="$LLVM_PATH" -DLIBCXX_ENABLE_RTTI=YES -DLIBCXX_HAS_MUSL_LIBC=YES -DLIBCXX_ENABLE_SHARED=NO -DLIBCXX_CXX_ABI=libcxxabi -DLIBCXX_CXX_ABI_INCLUDE_PATHS="/llvm-project-openorbis/libcxxabi/include" -DLIBCXX_CXX_ABI_LIBRARY_PATH="/llvm-project-openorbis/libcxxabi/build/lib" .. && make
 
 # Build create-eboot and create-lib
 cd /OpenOrbis-PS4-Toolchain/src/tools/create-eboot
@@ -90,10 +90,10 @@ rm -r /OpenOrbis-PS4-Toolchain/src/lib/build/lib/*.so && rm -r /OpenOrbis-PS4-To
 cd /OpenOrbis-PS4-Toolchain/samples/library_example && make
 
 # Copy the libc++ libraries
-cp /llvm-project/compiler-rt/build/lib/linux/* /OpenOrbis-PS4-Toolchain/lib
-cp /llvm-project/libcxx/build/lib/* /OpenOrbis-PS4-Toolchain/lib
-cp /llvm-project/libcxxabi/build/lib/* /OpenOrbis-PS4-Toolchain/lib
-cp /llvm-project/libunwind/build/lib/* /OpenOrbis-PS4-Toolchain/lib
+cp /llvm-project-openorbis/compiler-rt/build/lib/linux/* /OpenOrbis-PS4-Toolchain/lib
+cp /llvm-project-openorbis/libcxx/build/lib/* /OpenOrbis-PS4-Toolchain/lib
+cp /llvm-project-openorbis/libcxxabi/build/lib/* /OpenOrbis-PS4-Toolchain/lib
+cp /llvm-project-openorbis/libunwind/build/lib/* /OpenOrbis-PS4-Toolchain/lib
 
 # Combine libc++, libc++abi and libunwind into a single archive
 touch /mri.txt
@@ -115,7 +115,7 @@ echo "END"                                  >> /mri.txt
 cd /OpenOrbis-PS4-Toolchain/lib && $AR -M < /mri.txt && rm /mri.txt && rm libc.a && mv libcM.a libc.a
 
 # Cleanup
-rm -rf /ps4 && rm -rf /musl && rm -rf /llvm-project
+rm -rf /ps4 && rm -rf /musl-openorbis && rm -rf /llvm-project-openorbis
 
 # Create a tarball
 mkdir /out && cd /out
