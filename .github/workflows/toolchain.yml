@@ -134,7 +134,7 @@ jobs:
       # Get maxton's publishing tools <3
       - name: "Download and extract maxton's Publishing Tools"
         run: |
-          BASE_URL="https://github.com/maxton/LibOrbisPkg/releases/latest/download"
+          BASE_URL="https://github.com/maxton/LibOrbisPkg/releases/download/v0.2"
           curl -sL $BASE_URL/PkgEditor-0.2.231.zip | busybox unzip - -o -d bin/windows
           curl -sL $BASE_URL/PkgTool.Core-0.2.231.zip | busybox unzip - -o -d bin/windows
           curl -sL $BASE_URL/PkgTool.Core-linux-x64-0.2.231.zip | busybox unzip - -o -d bin/linux
