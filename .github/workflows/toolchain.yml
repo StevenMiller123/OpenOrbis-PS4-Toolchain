@@ -127,9 +127,9 @@ jobs:
       - name: Download and extract dependencies
         run: |
           curl -sL https://github.com/StevenMiller123/llvm-project-openorbis/releases/latest/download/libcxx-full.tar.gz | tar xz -C ./
-          curl -sL https://github.com/OpenOrbis/SDL-PS4/releases/latest/download/SDL2.tar.gz | tar xz -C ./
+          curl -sL https://github.com/OpenOrbis/SDL-PS4/releases/download/v1.0/SDL2.tar.gz | tar xz -C ./
           curl -sL https://github.com/OpenOrbis/create-gp4/releases/latest/download/binaries.tar.gz | tar xz -C ./
-          curl -sL https://github.com/OpenOrbis/readoelf/releases/latest/download/binaries.tar.gz | tar xz -C ./
+          curl -sL https://github.com/OpenOrbis/readoelf/releases/download/v1.0/binaries.tar.gz | tar xz -C ./
 
       # Get maxton's publishing tools <3
       - name: "Download and extract maxton's Publishing Tools"
