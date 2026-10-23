@@ -189,7 +189,7 @@ int32_t sceKernelPollEventFlag(OrbisKernelEventFlag, uint64_t, uint32_t, uint64_
 int32_t sceKernelPollSema(OrbisKernelSema, int);
 size_t sceKernelPread(int32_t, void *, size_t, off_t);
 size_t sceKernelPreadv(int32_t, const OrbisKernelIovec *, int32_t, off_t);
-void sceKernelPrintBacktraceWithModuleInfo();
+void sceKernelPrintBacktraceWithModuleInfo(const char *);
 size_t sceKernelPwrite(int32_t, const void *, size_t, off_t);
 size_t sceKernelPwritev(int32_t, const OrbisKernelIovec *, int32_t, off_t);
 int32_t sceKernelQueryMemoryProtection(void *, void **, void **, int32_t *);
