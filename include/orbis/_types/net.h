@@ -1,13 +1,19 @@
 #pragma once
 
+typedef enum OrbisNetAddressFamily
+{
+	ORBIS_NET_AF_UNIX = 1,
+	ORBIS_NET_AF_INET = 2,
+	ORBIS_NET_AF_INET6 = 28,
+};
+
 typedef enum OrbisNetType
 {
-	ORBIS_NET_AF_INET = 2,
 	ORBIS_NET_SOCK_STREAM = 1,
 	ORBIS_NET_SOCK_DGRAM = 2,
 	ORBIS_NET_SOCK_RAW = 3,
 	ORBIS_NET_SOCK_DGRAM_P2P = 6,
-	ORBIS_NET_SOCK_STREAM_P2P = 0,
+	ORBIS_NET_SOCK_STREAM_P2P = 10,
 } OrbisNetType;
 
 #define SCE_NET_DBG_MAX_NAME_LENGTH	31
@@ -17,7 +23,6 @@ typedef uint32_t OrbisNetSocklen_t;
 typedef uint32_t OrbisNetInAddr_t;
 typedef uint16_t OrbisNetInPort_t;
 typedef uint8_t OrbisNetSaFamily_t;
-
 
 typedef struct OrbisNetLinger {
 	int32_t status;

@@ -125,7 +125,7 @@ void sceNetGetSystemTime();
 uint32_t sceNetHtonl(uint32_t);
 uint64_t sceNetHtonll(uint64_t);
 uint16_t sceNetHtons(uint16_t);
-void sceNetInetNtop();
+const char* sceNetInetNtop(int32_t, const void*, char*, uint32_t);
 int32_t sceNetInetPton(int32_t, const char*, void*);
 void sceNetInetPtonEx();
 int32_t sceNetInit();
