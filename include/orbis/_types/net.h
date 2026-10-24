@@ -5,7 +5,7 @@ typedef enum OrbisNetAddressFamily
 	ORBIS_NET_AF_UNIX = 1,
 	ORBIS_NET_AF_INET = 2,
 	ORBIS_NET_AF_INET6 = 28,
-};
+} OrbisNetAddressFamily;
 
 typedef enum OrbisNetType
 {
