@@ -129,7 +129,7 @@ const char* sceNetInetNtop(int32_t, const void*, char*, uint32_t);
 int32_t sceNetInetPton(int32_t, const char*, void*);
 void sceNetInetPtonEx();
 int32_t sceNetInit();
-void sceNetIoctl();
+int32_t sceNetIoctl(OrbisNetId, uint64_t, ...);
 int32_t sceNetListen(OrbisNetId, int);
 void sceNetMemoryAllocate();
 void sceNetMemoryFree();

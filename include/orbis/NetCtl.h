@@ -55,6 +55,14 @@ typedef union OrbisNetCtlInfo {
 	uint16_t http_proxy_port;
 } OrbisNetCtlInfo;
 
+typedef struct OrbisNetCtlNatInfo {
+    uint32_t size;
+    int32_t stun_status;
+    int32_t nat_type;
+    uint32_t mapped_addr;
+} OrbisNetCtlNatInfo;
+
+int32_t sceNetCtlGetNatInfo(OrbisNetCtlNatInfo *);
 int32_t sceNetCtlGetInfo(int32_t, OrbisNetCtlInfo *);
 int32_t sceNetCtlInit();
 void sceNetCtlTerm();

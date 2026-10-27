@@ -372,3 +372,5 @@ typedef struct OrbisNpWebApi2ResponseInformationOption {
     uint64_t error_object_size;
     uint64_t response_data_size;
 } OrbisNpWebApi2ResponseInformationOption;
+
+typedef void* (*OrbisNpThreadEntry)(void*);

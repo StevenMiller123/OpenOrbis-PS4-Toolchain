@@ -1,7 +1,10 @@
 #ifndef _SCE_NP_COMMON_H_
 #define _SCE_NP_COMMON_H_
 
+#include "_types/Np.h"
+
 #include <stdint.h>
+#include <pthread.h>
 
 #ifdef __cplusplus 
 extern "C" {
@@ -252,7 +255,7 @@ void sceNpCondTimedwait();
 // Empty Comment
 void sceNpCondWait();
 // Empty Comment
-void sceNpCreateThread();
+int32_t sceNpCreateThread(pthread_t *, OrbisNpThreadEntry, void*, int32_t, uint64_t, uint64_t, const char *);
 // Empty Comment
 void sceNpFreeKernelMemory();
 // Empty Comment
@@ -280,11 +283,11 @@ void sceNpHexToInt();
 // Empty Comment
 void sceNpIntIsOnlineIdString();
 // Empty Comment
-void sceNpIntIsValidOnlineId();
+int32_t sceNpIntIsValidOnlineId(const OrbisNpOnlineId* id);
 // Empty Comment
 void sceNpIntToHex();
 // Empty Comment
-void sceNpJoinThread();
+int32_t sceNpJoinThread(pthread_t thread, void** ret);
 // Empty Comment
 void sceNpJsonParse();
 // Empty Comment

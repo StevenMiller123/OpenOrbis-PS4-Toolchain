@@ -41,7 +41,7 @@ void sceNpGetAccountCountryA();
 void sceNpGetAccountDateOfBirth();
 void sceNpGetAccountDateOfBirthA();
 void sceNpGetAccountId();
-void sceNpGetAccountIdA();
+int32_t sceNpGetAccountIdA(int32_t user_id, uint64_t* account_id);
 void sceNpGetAccountLanguage();
 void sceNpGetAccountLanguageA();
 void sceNpGetGamePresenceStatus();
