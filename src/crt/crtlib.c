@@ -1,7 +1,7 @@
 #include <stdint.h>
 
-void(*__init_array_start[])(void);
-void(*__init_array_end[])(void);
+extern void(*__init_array_start[])(void) __attribute__((weak, visibility("hidden")));
+extern void(*__init_array_end[])(void) __attribute__((weak, visibility("hidden")));
 
 // sce_module_param
 __asm__(
