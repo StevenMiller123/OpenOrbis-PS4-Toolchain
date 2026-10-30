@@ -13,4 +13,4 @@ typedef struct OrbisHttp2PreSendCallbackData {
     void* cert;
 } OrbisHttp2PreSendCallbackData;
 
-typedef int32_t (*OrbisHttp2PreSendCallback)(int32_t, int32_t, OrbisHttp2PreSendCallback *, void *);
+typedef int32_t (*OrbisHttp2PreSendCallback)(int32_t, int32_t, OrbisHttp2PreSendCallbackData *, void *);

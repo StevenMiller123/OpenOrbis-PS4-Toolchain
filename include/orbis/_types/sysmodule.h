@@ -176,4 +176,5 @@ typedef enum OrbisSysModuleInternal : uint32_t
     ORBIS_SYSMODULE_INTERNAL_PAD = 0x80000024, // libScePad
     ORBIS_SYSMODULE_INTERNAL_SYS_UTIL = 0x80000026, // libSceSysUtil
     ORBIS_SYSMODULE_INTERNAL_HTTP2 = 0x8000008C, // libSceHttp2
+    ORBIS_SYSMODULE_INTERNAL_NP_WEB_API2 = 0x8000008F, // libSceNpWebApi2
 } OrbisSysModuleInternal;
