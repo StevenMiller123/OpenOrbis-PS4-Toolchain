@@ -45,9 +45,9 @@ jobs:
       - name: Checkout ps4libdoc
         uses: actions/checkout@main
         with:
-          repository: idc/ps4libdoc
+          repository: StevenMiller123/ps4libdoc
           path: orbis-lib-gen/ps4libdoc
-          ref: '9.00'
+          ref: 'latest'
 
       - name: Set environment variables
         run: | 
