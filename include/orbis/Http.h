@@ -102,7 +102,7 @@ int32_t sceHttpGetStatusCode(int32_t reqId, int32_t *statusCode);
 // Empty Comment
 int32_t sceHttpInit(int32_t memId, int32_t sslId, size_t poolSize);
 // Empty Comment
-void sceHttpParseResponseHeader();
+int32_t sceHttpParseResponseHeader(const char *, uint64_t, const char *, const char **, uint64_t *);
 // Empty Comment
 void sceHttpParseStatusLine();
 // Empty Comment
@@ -219,7 +219,6 @@ void sceHttpUriSweepPath();
 void sceHttpUriUnescape();
 // Empty Comment
 void sceHttpWaitRequest();
-
 
 #ifdef __cplusplus
 }

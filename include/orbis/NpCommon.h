@@ -263,7 +263,7 @@ void sceNpGetNavSdkVersion();
 // Empty Comment
 void sceNpGetPlatformType();
 // Empty Comment
-void sceNpGetSdkVersion();
+void sceNpGetSdkVersion(char *);
 // Empty Comment
 void sceNpGetSystemClockUsec();
 // Empty Comment
