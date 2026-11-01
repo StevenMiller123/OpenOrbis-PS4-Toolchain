@@ -301,7 +301,7 @@ void sceSslSetVerifyCallback();
 // Empty Comment
 void sceSslShowMemoryStat();
 // Empty Comment
-void sceSslTerm();
+int32_t sceSslTerm(int32_t);
 // Empty Comment
 void sceSslUnloadCert();
 // Empty Comment
