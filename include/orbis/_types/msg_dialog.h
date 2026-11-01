@@ -83,7 +83,7 @@ typedef struct OrbisMsgDialogSystemMessageParam {
 
 typedef struct OrbisMsgDialogParam {
 	OrbisCommonDialogBaseParam baseParam;
-	size_t size;
+	uint64_t size;
 	OrbisMsgDialogMode mode;
 	int32_t :32;
 	OrbisMsgDialogUserMessageParam *userMsgParam;

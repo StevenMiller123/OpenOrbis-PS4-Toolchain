@@ -1,6 +1,5 @@
 #pragma once 
 
-#include <cstddef>
 #include <stdint.h>
 
 #define ORBIS_COMMON_DIALOG_MAGIC_NUMBER 0xC0D1A109
@@ -11,7 +10,7 @@ typedef enum OrbisCommonDialogResult {
 } OrbisCommonDialogResult;
 
 typedef struct OrbisCommonDialogBaseParam {
-	size_t size;
+	uint64_t size;
 	uint8_t reserved[36];
 	uint32_t magic;
 } OrbisCommonDialogBaseParam __attribute__ ((__aligned__(8)));
