@@ -1,5 +1,6 @@
 #pragma once 
 
+#include <cstddef>
 #include <stdint.h>
 
 #define ORBIS_COMMON_DIALOG_MAGIC_NUMBER 0xC0D1A109
