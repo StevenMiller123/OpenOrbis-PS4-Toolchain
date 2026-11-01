@@ -35,6 +35,7 @@ int32_t scePadSetVibration(int32_t handle, const OrbisPadVibeParam *param);
 int32_t scePadOutputReport(int32_t handle, int32_t type, uint8_t *report, int32_t length);
 int32_t scePadSetProcessPrivilege(int32_t privilage);
 int32_t scePadGetBluetoothAddress(int handle, uint64_t *BluetoothAddress);
+int32_t scePadGetDataInternal(int index, OrbisPadData* data);
 
 // The below functions are currently not reversed
 void scePadConnectPort();
@@ -49,7 +50,6 @@ void scePadEnableExtensionPort();
 void scePadEnableSpecificDeviceClass();
 void scePadEnableUsbConnection();
 void scePadGetCapability();
-void scePadGetDataInternal();
 void scePadGetDeviceId();
 void scePadGetDeviceInfo();
 void scePadGetExtensionUnitInfo();
