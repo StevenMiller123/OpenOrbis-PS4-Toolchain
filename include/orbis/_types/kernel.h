@@ -333,4 +333,5 @@ typedef struct
 	int32_t  attribute;
 	int32_t  hasParamSfo;
 	OrbisTitleWorkaround TitleWorkaround;
+    char unk_ps5_extension[56];
 } OrbisAppInfo;
