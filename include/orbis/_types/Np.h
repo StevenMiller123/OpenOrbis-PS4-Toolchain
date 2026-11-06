@@ -22,6 +22,10 @@ typedef struct OrbisNpTrophyData {
     uint64_t timestamp;   // time when the Trophy was unlocked
 } OrbisNpTrophyData;
 
+typedef struct OrbisNpTrophyFlagArray {
+    uint32_t flag_bits[4];
+} OrbisNpTrophyFlagArray;
+
 typedef struct OrbisNpTrophyNumInfo {
     uint32_t num_platinum;
     uint32_t num_gold;
