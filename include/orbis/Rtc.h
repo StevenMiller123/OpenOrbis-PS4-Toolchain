@@ -183,7 +183,7 @@ int32_t sceRtcGetCurrentClockLocalTime(TimeTable*);
 // Undocumented Function... Need to reverse
 void sceRtcGetCurrentDebugNetworkTick();
 
-int32_t sceRtcGetCurrentRawNetworkTick(uint64_t* tick)
+int32_t sceRtcGetCurrentRawNetworkTick(uint64_t* tick);
 
 // Undocumented Function... Need to reverse
 void sceRtcGetCurrentNetworkTick();
