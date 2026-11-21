@@ -212,7 +212,8 @@ void sceHttpUriEscape();
 // Empty Comment
 void sceHttpUriMerge();
 // Empty Comment
-void sceHttpUriParse();
+int sceHttpUriParse(OrbisHttpUriElement* out, const char* srcUri, void* pool,
+                                 size_t* require, size_t prepare);
 // Empty Comment
 void sceHttpUriSweepPath();
 // Empty Comment
